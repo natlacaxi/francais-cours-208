@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Français — Cours 208</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080b12; --card:#0f1420; --card2:#161d2e; --border:#1e2a40;
+  --text:#dde6f8; --muted:#4a5570;
+  --accent:#e8534a; --rgb:232,83,74;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;min-height:100vh;}
+
+/* ── BANDEAU STICKY ── */
+.bandeau{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,11,18,.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:10px 20px;
+}
+.bandeau::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent);opacity:.6;
+}
+.bandeau-inner{
+  max-width:900px;margin:0 auto;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.back-btn{
+  display:inline-flex;align-items:center;gap:6px;padding:7px 14px;
+  background:rgba(var(--rgb),.1);border:1px solid rgba(var(--rgb),.3);
+  border-radius:8px;color:var(--accent);text-decoration:none;
+  font-size:.75rem;font-weight:700;transition:all .15s;flex-shrink:0;
+  font-family:'Sora',sans-serif;
+}
+.back-btn:hover{background:rgba(var(--rgb),.2);}
+.bandeau-right{display:flex;align-items:center;gap:14px;margin-left:auto;flex-wrap:wrap;}
+.clock{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:700;letter-spacing:2px;}
+.date-info{display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
+.date-jour{font-size:.78rem;font-weight:700;}
+.date-complet{font-size:.6rem;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+.sem-bloc{display:flex;flex-direction:column;align-items:center;gap:1px;}
+.sem-lab{font-size:.5rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);}
+.sem-b{font-size:1.1rem;font-weight:800;padding:3px 11px;border-radius:7px;font-family:'JetBrains Mono',monospace;line-height:1;}
+.sem-n{font-size:.5rem;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+
+/* ── HERO MATIÈRE ── */
+.hero{
+  padding:32px 20px 28px;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 120% at 50% -10%,rgba(var(--rgb),.1),transparent 70%);
+}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;}
+.hero-top{
+  font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(var(--rgb),.7);font-family:'JetBrains Mono',monospace;margin-bottom:16px;
+}
+.hero-row{display:flex;align-items:center;gap:20px;}
+.hero-emoji{
+  font-size:4rem;line-height:1;flex-shrink:0;
+  filter:drop-shadow(0 0 24px rgba(var(--rgb),.5));
+}
+.hero-nom-wrap{}
+.hero-niveau{
+  display:inline-block;font-size:.65rem;font-weight:800;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--accent);font-family:'JetBrains Mono',monospace;
+  background:rgba(var(--rgb),.12);border:1px solid rgba(var(--rgb),.3);
+  padding:3px 10px;border-radius:20px;margin-bottom:8px;
+}
+.hero-nom{
+  font-size:clamp(2rem,6vw,3rem);font-weight:800;letter-spacing:-2px;
+  color:var(--accent);line-height:1;
+  text-shadow:0 0 60px rgba(var(--rgb),.4);
+}
+.hero-desc{font-size:.82rem;color:var(--muted);margin-top:6px;}
+
+/* ── CONTENU ── */
+main{max-width:900px;margin:0 auto;padding:28px 20px 80px;}
+
+.section-lbl{
+  font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;
+  color:var(--muted);margin:0 0 16px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-lbl::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ── CARTES SÉQUENCES ── */
+.seq-list{display:flex;flex-direction:column;gap:10px;}
+
+.seq-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:16px 18px;cursor:pointer;
+  display:flex;align-items:center;gap:14px;transition:all .2s;
+}
+.seq-card:hover{
+  border-color:var(--accent);
+  background:var(--card2);
+  transform:translateX(5px);
+  box-shadow:0 6px 28px rgba(var(--rgb),.15);
+}
+.seq-num{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  background:rgba(var(--rgb),.1);border:1px solid rgba(var(--rgb),.35);
+  color:var(--accent);display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:700;
+}
+.seq-info{flex:1;min-width:0;}
+.seq-titre{font-size:.9rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.seq-sous{font-size:.7rem;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.seq-arrow{
+  color:var(--muted);font-size:.9rem;width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:6px;transition:all .2s;flex-shrink:0;
+}
+.seq-card:hover .seq-arrow{color:var(--accent);background:rgba(var(--rgb),.12);}
+
+/* ── PAGE COURS ── */
+.cours-back{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;background:var(--card2);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-size:.8rem;font-weight:600;
+  cursor:pointer;margin-bottom:22px;transition:all .15s;font-family:'Sora',sans-serif;
+}
+.cours-back:hover{background:var(--border);}
+.cours-titre{font-size:1.5rem;font-weight:800;letter-spacing:-.8px;margin-bottom:6px;}
+.cours-meta{
+  font-size:.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;
+  margin-bottom:24px;padding-left:14px;border-left:3px solid var(--accent);
+}
+.cours-content{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:28px;line-height:1.9;font-size:.9rem;
+  border-top:3px solid var(--accent);
+}
+.cours-content h2{font-size:1.05rem;font-weight:800;margin:26px 0 10px;color:var(--accent);letter-spacing:-.2px;}
+.cours-content h2:first-child{margin-top:0;}
+.cours-content h3{font-size:.92rem;font-weight:700;margin:18px 0 7px;color:var(--text);}
+.cours-content p{margin-bottom:12px;color:#bbc8e0;}
+.cours-content ul,
+.cours-content ol{margin:0 0 14px 22px;color:#bbc8e0;}
+.cours-content li{margin-bottom:5px;line-height:1.6;}
+.cours-content strong{color:var(--text);}
+.cours-content em{color:var(--accent);font-style:normal;font-weight:600;}
+.cours-content hr{border:none;border-top:1px solid var(--border);margin:22px 0;}
+.cours-content blockquote{
+  border-left:3px solid var(--accent);padding:10px 16px;
+  background:rgba(var(--rgb),.06);border-radius:0 8px 8px 0;
+  margin:14px 0;color:#bbc8e0;font-style:italic;
+}
+
+/* ── PAGES ── */
+.page{display:none;}
+.page.active{display:block;animation:pageIn .3s ease;}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.stagger>*{animation:fadeUp .35s both;}
+.stagger>*:nth-child(1){animation-delay:.03s;}.stagger>*:nth-child(2){animation-delay:.07s;}
+.stagger>*:nth-child(3){animation-delay:.11s;}.stagger>*:nth-child(4){animation-delay:.15s;}
+.stagger>*:nth-child(5){animation-delay:.19s;}.stagger>*:nth-child(6){animation-delay:.23s;}
+.stagger>*:nth-child(7){animation-delay:.27s;}.stagger>*:nth-child(8){animation-delay:.31s;}
+.stagger>*:nth-child(9){animation-delay:.35s;}.stagger>*:nth-child(10){animation-delay:.39s;}
+
+.footer{
+  text-align:center;padding:18px;font-size:.65rem;color:var(--muted);
+  font-family:'JetBrains Mono',monospace;border-top:1px solid var(--border);margin-top:20px;
+}
+
+@media(max-width:600px){
+  .hero-nom{font-size:2rem;}
+  .bandeau-right{margin-left:0;}
+  .date-info{align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── BANDEAU STICKY ── -->
+<div class="bandeau">
+  <div class="bandeau-inner">
+    <a href="index.html" class="back-btn">← Accueil</a>
+    <div class="bandeau-right">
+      <div class="clock" id="clock">--:--</div>
+      <div class="date-info">
+        <div class="date-jour" id="jour">—</div>
+        <div class="date-complet" id="date-complet">— — ——</div>
+      </div>
+      <div class="sem-bloc">
+        <div class="sem-lab">Semaine</div>
+        <div class="sem-b" id="sem-b">—</div>
+        <div class="sem-n" id="sem-n">n°—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-top">Lycée Albert Calmette &nbsp;·&nbsp; 2025 / 2026</div>
+    <div class="hero-row">
+      <div class="hero-emoji">🇫🇷</div>
+      <div class="hero-nom-wrap">
+        
+        <div class="hero-nom">Français</div>
+        <div class="hero-desc">EMMANUELLE OCCELLI</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- PAGE LISTE DES SÉQUENCES -->
+  <div id="page-liste" class="page active">
+    <div class="section-lbl">Séquences &amp; parties</div>
+    <div id="seq-list" class="seq-list stagger"></div>
+  </div>
+
+  <!-- PAGE COURS -->
+  <div id="page-cours" class="page">
+    <button class="cours-back" onclick="retour()">← Retour aux séquences</button>
+    <div class="cours-titre" id="cours-titre">—</div>
+    <div class="cours-meta" id="cours-meta">—</div>
+    <div class="cours-content" id="cours-contenu"></div>
+  </div>
+
+</main>
+
+<div class="footer">Talco Inc · 2026 · Anton Joyeux · v.6.1</div>
+
+<script>
+// ╔══════════════════════════════════════════════════════════╗
+// ║  ✏️  TES COURS — modifie uniquement ce tableau           ║
+// ╠══════════════════════════════════════════════════════════╣
+// ║                                                          ║
+// ║  Ajouter une SÉQUENCE :                                  ║
+// ║  { titre:"Séquence X — Titre",                          ║
+// ║     parties:[                                            ║
+// ║       { titre:"Partie 1", contenu:`...` },             ║
+// ║     ]                                                    ║
+// ║  },                                                     ║
+// ║                                                          ║
+// ║  Ajouter une PARTIE dans une séquence :                  ║
+// ║  { titre:"Partie X", contenu:`...` },                  ║
+// ║                                                          ║
+// ║  Balises utilisables dans contenu :                      ║
+// ║    <h2>Titre principal</h2>                              ║
+// ║    <h3>Sous-titre</h3>                                   ║
+// ║    <p>Paragraphe</p>                                     ║
+// ║    <ul><li>item</li></ul>                                ║
+// ║    <ol><li>item</li></ol>                                ║
+// ║    <strong>gras</strong>                                 ║
+// ║    <em>couleur accent</em>                               ║
+// ║    <blockquote>citation</blockquote>                     ║
+// ║    <hr> (séparateur)                                     ║
+// ╚══════════════════════════════════════════════════════════╝
+
+const SEQUENCES = [
+
+  // ✏️ ── SÉQUENCE 2 ─────────────────────────────────────────
+  {
+    titre: "Séquence 1 - La Condition Animale",
+    parties: [
+      {
+        titre: "Séquence 1 - La Condition Animale",
+        contenu: `
+        
+        
+<h1 style="color: red; text-decoration: underline;">
+SEQUENCE 1 - LA CONDITION ANIMALE
+</h1> <br>
+<u>Objet d'étude :</u> La littérature d'idée et la presse au 19e siècle et 21e siècle<br><br>
+
+<u>Groupement de texte :</u>  photocopies<br><br>
+
+<p><u>Lecture cursives :</u> Article de Lenoir  philosophe et de France de Waal, primatologue &gt; publié dans “Psychologie Magazine” en 2018.</p>
+<br>
+<p style="color: #4CAF50;">
+<span style="text-decoration: underline;">Problématique&nbsp;:</span> Comment la condition animale fait-elle l'objet de dénonciation après avoir été idéalisée ?
+</p>
+</p>
+<p><h2><u>Introduction </p></h2></u>
+
+<p><h4>Un tableau idyllique Marie Lezyczynpska, d'après Jean-Baptiste Oudry, La Ferme, 1753, Château de Versailles.</p>
+<p>Paul Gauguin, Le Cheval Blanc, 1898, Musée d'Orsay - Paris</p></h4>
+
+<p>Reine polyglotte et cultivée, Marie Lezyczynpska, épouse du roi Louis XV, s'adonne à la peinture. Entre autres œuvre et attribué à la souveraine cette copie fidèle d'un tableau de Jean-Baptiste Oudry : La Ferme (Château de Versailles)</p>
+
+<p>L'ensemble de la composition dégage un sentiment de sérénité, même si au premier plan, à gauche, un chien vient de saisir dans sa gueule un canard sauvage imprudent, provoquant la panique chez les congénères du volatils, qui s'apprête à s'envoler pour fuir le danger.</p>
+
+<p>Mise à part cette action qui anime le tableau, cette ferme constitue une représentation idéalisée de l'exploitation agricole. Il semble que le peintre ait voulu rassembler toutes sortes de bétail : ovins, bovins, caprin, dans une belle harmonie autour d'une petite pièce d'eau qui constitue le centre de la cour. Évocation des tableaux du jardin d'Eden faisant coexister pacifiquement toutes les espèces de la création. La nature et denique accueille aussi les chevaux et les hommes du tableau de Gauguin intitulé Le Cheval Blanc.</p>
+
+<p>L'œuvre de restitue pas une scène réelle mais une vision imaginaire d'un paysage tahitien sur le passage des âmes dans l'autre monde. La couleur blanche en Polynésie est lié à la mort et au culte des dieux. Derrière l'animal sacré, deux cavaliers nue s'éloignent en chevauchant accrue la monture &gt; impression de sérénité. </p>
+
+<p>La principale différence dans le traitement des animaux entre les deux tableaux tient à ce que l'un représente une scène agricole tandis que l'autre a une portée allégorique (donner une représentation concrète à une idée abstraite)</p>
+
+<p>Les relations entre les animaux humains et non humains apparaissent plus fusionnels chez Gauguin et plus utilitaires chez Marie Lezyczynpska, chez elle les animaux sont domestiqués mais harnachés. </p>
+
+<p>Ils servent d'animaux de trait tandis que chez Gauguin même s'il servent de monture ils sont sauvages et libres aucun harnachement et celui qui donne son titre à l'oeuvre, le cheval blanc du premier plan ne supporte aucun cavalier et bois paisiblement dans le cours d'eau qu'il abrite.</p>
+
+<p>Les styles picturaux et leur choix de cadrage diffèrent, Marie Lezyczynpska : composition classique en plan large qui en large tout un paysage dans des tons réalistes. Tandis que chez Gauguin la composition est plus resserrée. Le ciel et l'horizon sont absents : palette plus éloquente que réaliste (les vertes prairies au vert émeraude il est bleu profond contraste avec des orangers et la teinte blanche des cavaliers)</p>
+
+<p>Le commanditaire, un pharmacien Tahitien, n'a pas apprécié l'audace et à refuser la toile car le cheval était “trop vert”.</p>
+
+<p><h2><u>II. Un Animal Martyrisé, Victor Hugo, Mélancolia, Les Contemplations, 1856.</p></h2></u>
+
+<p>La sainte écrit suicide la pitié et l'indignation du lecteur. Le narrateur semble prendre le lecteur à témoin par le biais de l'interrogation des deux premiers vers qui se transforment en phrase exclamative pour mieux frapper l'auditoire. Les deux protagonistes sont campés dans un certain manichéisme (opposition des contrastes : un bourreau “l'homme ivre” et sa victime “la bête effarée”. La scène nous est d'abord décrite du point de vue de la victime innocente perdue qui peine à saisir la cause de son tourment, entre le poids de sa charge et la violence des coups de fouet de son maître (v. 3-6), puis le narrateur souligne l'acharnement impitoyable du roulier par des parallélismes de structure. Le mot “coups” et répéter trois fois (v. 7-18) dont deux employés métaphoriquement et hyperbolique qui accentuent la violence. “Le roulier n'est plus qu'un orage de coups” et “les coups furieux pleuvent” (v. 18) Les réactions du cheval suscite la compassion et créer un registre pathétique “le cheval hagard, erant, estropié / baisse son cou lugubre et sa tête est garée” (v. 12-13). Et enfin “il tombe et le voilà brisé” (v. 20) sous les brancards.</p>
+
+<p><h2><u>III. Scène de la vie quotidienne </p></h2></u>
+
+<p>Atelier S. Bening, Enluminure Flamande, 1520, Bruges</p>
+
+<p>Cette scène de la vie quotidienne peut choquer car elle représente l'égorgement du cochon. En outre, cette action porte le principal centre d'intérêt du tableau car elle est au premier plan immobilise les deux personnages. L'homme est en train de saigner l'animal en lui plantant un couteau dans la carotide et la femme récupère le sang qui coule dans une poêle à long manche sans doute pour faire du boudin. La souffrance se lit dans sa gueule ouverte qui hurle et dans son œil mi-clos &gt; effet de douleur. Ce qui peut surprendre dans cette enluminure &gt; banalisation de la Seine parmi d'autres actions de la vie quotidienne du village (la cuisson du pain, 2e plan, pétrissage, farine)</p>
+
+<p><h2><u>IV. George Orwell, La Ferme des Animaux, 1945 </p></h2></u>
+
+<p>Les animaux de monsieur Jonez sont victimes de maltraitance. Tout d'abord c'est la fin qu'il est poussé à enfoncer la porte de la resserre pour “fourrager dans les huches et les boîtes à ordures’ (l. 2). Le narrateur précise que ces animaux sont des affamés (l. 4) il est nommé “les mœurs de la faim” (l. 5)</p>
+
+<p>Une telle situation ne peut que susciter la compassion du lecteur qui va considérer avec sympathie d'un œil complice la révolte face à la violence dont ils sont victimes. En effet, ces animaux affamés reçoivent “une volée de coups” (l. 3). Déclenchement d'une révolte unanime et spontanée. Le narrateur prend évidemment partie des animaux et nous incite à faire de même en présentant les hommes comme des bourreaux qui ont pris l'habitude de “ les rosser a qui mieux + mieux”</p>
+
+<p><h2><u>V. Maupassant, Histoire d'un Chien</p></h2></u>
+
+<p>Cet extrait est tiré d’une nouvelle du XIXᵉ siècle de Maupassant, auteur réaliste, publiée dans des journaux à grand tirage. Ce genre littéraire populaire rencontrait le goût du public pour les faits divers : événements sensationnels mais anecdotiques.</p>
+
+<p>Problématique : Comment ce passage, qui constitue la chute de la nouvelle, dénonce-t-il le sort réservé aux chiens au XIXᵉ siècle ?</p>
+
+
+<p><h3>1) Une fin improbable</p></h3>
+
+<p>Le personnage de François peut susciter l’attention du lecteur car il semble d’abord contraint de se débarrasser de sa chienne par son maître, comme l’indique le plus-que-parfait de l’indicatif (« il l’avait noyée fin avril », l. 3), marquant l’antériorité au souvenir qui le hante (l. 1).</p>
+
+<p>En effet, ce crime suscite chez lui une telle culpabilité qu’il en devient malade pendant un mois (l. 1). Lorsqu’il retombe par hasard sur le cadavre de sa chienne, il est effaré, bouleversé (l. 11-12), pris d’une « peur folle » qui le conduit à l’ivresse tous les jours (l. 12-13).</p>
+
+<p>L’intensité de sa réaction est marquée par quatre actions de premier plan au passé simple (« il serra », « il se mit », « il marcha », « il demanda », l. 12-13). Ces actions se détachent de l’arrière-plan à l’imparfait (« il ne retrouvait plus sa route », l. 14), traduisant son état troublé.</p>
+
+<p>La coïncidence surprenante qui constitue la chute de cette nouvelle est la découverte, par François, du cadavre de sa chienne Cocotte qu’il avait noyée un mois et demi plus tôt, à soixante lieues de Paris (l. 10).</p>
+
+<p><h3>2) La maltraitance animale : une banalité</p></h3>
+
+<p>Au niveau du lexique, les participes passés employés comme adjectifs (« effaré », « bouleversé », l. 11) expriment l’intensité du choc de François. De même, le nom « miracle » (l. 12), comparé à l’événement, et le groupe nominal « apparition vengeresse » (l. 12), support d’une métaphore qui confère à l’événement une dimension surnaturelle, permettent de comprendre l’état d’esprit du cocher.</p>
+
+<p>Bien qu’il soit l’auteur d’un crime inexcusable, François peut, dans une certaine mesure, susciter la compassion du lecteur. En effet, il apparaît aussi comme une victime :</p>
+
+<p>- Il a dû se débarrasser de Cocotte pour respecter l’ordre de son maître ;</p>
+
+<p>- Sa culpabilité le fait tomber malade ;</p>
+
+<p>- Il manque de devenir fou lorsqu’il retrouve le cadavre de sa chienne.</p>
+
+<p>La visée de cette nouvelle est clairement énoncée dans la phrase de conclusion : il s’agit pour Maupassant de soutenir les projets de création de la SPA, un « hospice et un refuge où les pauvres chiens 
+sans maître trouveraient nourriture et abri, au lieu d’une mort cruelle que leur réservait l’administration ».</p>
+
+<p>Cette nouvelle dénonce la maltraitance animale au XIXᵉ siècle, époque à laquelle les propriétaires de chiens n’hésitaient pas à abandonner ou à tuer les animaux dont ils ne voulaient plus. D’autres nouvelles de Maupassant, telles que Un Fou ou Pierrot, abordent également ce thème. L’originalité de L’Histoire d’un chien réside dans l’efficacité de sa chute inattendue et lourde de conséquences.</p>
+
+<p>Le réalisme de Maupassant est bien présent : il inscrit François dans son milieu social (cocher), et illustre la puissance d’une écriture réaliste et naturaliste.</p>
+
+<p><h2><u> 3)Parallèle avec une campagne moderne</p></h3></u>
+
+<p>Le spot vidéo de « 30 Millions d’Amis » repose sur un montage en chiasme (parallélisme inversé). Dans la première partie, on voit un homme détacher un chien abandonné dans la forêt et le ramener chez lui. Puis un fond noir précise : « Nous aurions aimé vous raconter cette histoire. Mais voici la réalité. »</p>
+
+<p>On assiste alors à la même séquence, mais inversée : l’homme sort de chez lui avec son chien, l’emmène dans la forêt et l’y abandonne.</p>
+
+<p><h2><u>VI. Zola : L’Amour des bêtes</p></h2></u>
+
+<p>Écrivain majeur du XIXᵉ siècle, Zola est le chef de file du naturalisme. Sa fresque romanesque des Rougon-Macquart lui valut une immense popularité. Auteur engagé, il prit fait et cause pour Dreyfus, qu’il défendit dans une série d’articles, dont le célèbre J’accuse. Mais Zola, ardent défenseur des animaux, rédigea aussi un article dans lequel il justifie l’amour qu’il leur porte.</p>
+
+<p style="color: #4CAF50;">
+<span style="text-decoration: underline;">Problématique&nbsp;:</span> Comment Zola parvient-il à partager l’émotion qu’il éprouve face à la souffrance des bêtes ?
+</p>
+
+<p><h3><u>1) Une réflexion portée par l’interrogation</p></h3></u>
+
+<p>Le flux des questions récurrentes constitue une stratégie de mise en demeure (procédé rhétorique qui force à réfléchir) de la réflexion et une habile captatio benevolentiae (expression latine : procédé qui consiste à capter la bienveillance du lecteur dès le début). Zola utilise une réflexion portée sur les animaux domestiques dans un important réseau de phrases interrogatives (directes et indirectes). La répétition des adverbes est très présente : Pourquoi (lignes 1, 3, 6, 9, 12, 16) et Qui (ligne 38). La répétition est privilégiée pour constituer une figure d’anaphore (procédé qui consiste à répéter un mot en début de phrase), qui donne au texte une tonalité médidative (qui invite à la réflexion) et existentielle (liée au sens de l’existence). Le sujet, a priori banal, est ainsi dramatisé et solennisé (rendu grave, digne).</p>
+
+<p>- Accumulation de phrases interrogatives qui obligent le lecteur à revenir sur ses préjugés ou à s’intéresser à un sujet qui ne semble pas, au premier abord, mériter une telle préoccupation. Toutes ces questions ont donc pour objectif la sensibilisation et la mobilisation du public.</p>
+
+<p>- La répétition de l’adverbe interrogatif Pourquoi traduit la profondeur et la souffrance devant le spectacle des bêtes abandonnées. Les questions progressent : elles partent de « la rencontre d’un chien perdu » pour aller jusqu’à « la miséricorde » à l’égard de « toutes ces bêtes abandonnées » (ligne 14).</p>
+
+<p><h3><u>2) Sensibiliser le lecteur</p></h3></u>
+
+<p>Zola adopte d’emblée l’ethos (l’image que l’écrivain donne de lui-même pour convaincre) de l’homme sensible. La personnalisation des propos est autorisée par le statut de tribune publique (espace d’expression officiel) de l’éditorial du Figaro, et il l’assume aisément. Il faut prendre en compte la situation d’énonciation (ensemble des circonstances : qui parle, à qui, où, quand, pourquoi et comment). Zola est alors un homme célèbre, à la fois adulé (très admiré) et honni (fortement détesté). Sa parole et ses écrits atteignent un très large public. L’usage de la première personne (je, me, moi) traduit un engagement sincère : Zola se met en scène comme défenseur des animaux et appelle à une lecture participative.</p>
+
+<p>Une partie du texte prend une tonalité pathétique, par le recours à des évocations tragiques et à des images fortes, destinées à susciter la pitié du lecteur. Zola commence son article en évoquant « le sort d’un chien perdu » (l. 1). Dès la première ligne, il utilise un procédé qui consiste à insister en construisant des groupes nominaux renforcés par des qualificatifs ou des périphrases. Cela crée une impression d’accumulation et accentue la gravité du propos.</p>
+
+<p>On trouve par exemple « des rue tumultueuses » (l. 1 ) « une pitié si pleine d’angoisse » (l. 4 )« un élancement de fraternelle compassion » (l. 7), ou encore « des plus sages, des plus solides volontés » (l. 37). À la fin du texte, Zola multiplie les questions rhétoriques comme « n’est-ce pas affreux, n’est-ce pas angoissant » (l. 41), ce qui renforce l’émotion.</p>
+
+<p>Zola emploie aussi de nombreuses métaphores pour rapprocher le sort des animaux de celui des êtres humains : il parle de « créatures qui souffrent » (l. 40-41) ou encore des « faibles, nécessités parents dont il faut prendre soin » (l. 40). Il construit ainsi un véritable parallèle entre les bêtes et les hommes.</p>
+
+<p>Le champ lexical de la misère traverse tout le texte : « chien perdu » (l. 1), « rue tumultueuses » (l. 1), « grelote au coin de quelques bornes » (l. 8). Ce vocabulaire rend la souffrance des animaux insupportable pour le lecteur. Pour accentuer encore l’effet, il emploie des mots très forts et très pathétiques : « secousse au cœur » (l. 1-2), « visiblement désespéré » (l. 3), « miséricorde » (l. 15 ) « tolérance » (l. 15), « universel amour » (l. 29). Ces termes élèvent le débat dans le domaine des valeurs morales et philosophiques.</p>
+
+<p><h3><u>3) Une argumentation organisé </p></h3></u>
+
+<p><h4>Dans la première partie (l. 1 - 16) </h4>
+Zola pose le sujet sous forme d’exorde (introduction d’un discours) rythmé par la répétition du mot « pourquoi ». Ce questionnement (interrogations lancinantes) suspend la réponse et touche directement la sensibilité du lecteur. Il amène chacun à se demander : pourquoi maltraiter les bêtes ? pourquoi fermer les yeux ? Zola joue sur la sensibilité du lecteur en s’y interrogeant sur les sentiments qu’il éprouve a la vue d’un animal souffrant.</p>
+
+<p><h4>La deuxième partie (l. 17 à 37) </h4>
+Dans ce deuxième mouvement, Zola utilise un développement résolutoire (développement qui cherche à conclure ou trancher une question) plus hypotaxique (phrases longues avec de nombreuses subordonnées). « Qui » (l. 19 et 20), « que » (l. 23), « que les bêtes » (l. 25). L’auteur utilise aussi le conditionnel (l. 19-21-22-23), qui permet un raisonnement et une analyse (examen détaillé d’une question) sur cette question de l’amour des bêtes. Zola cherche à faire appl à la raison des lecteurs (=convaincre).</p>
+
+<p>En fait, malgré la classification proposée, il s’attache par priorité à détailler la pureté et la singularité du sentiment le plus positif pour les animaux. Il prend donc entièrement parti pour les bêtes et exclut toutes les personnes qui haïssent les animaux, en les qualifiant « d’ennemis » ou « d’indifférents » (l. 20-21).</p>
+
+<p>En différent, l’examen de leur thèse est différent. Le lecteur, qui se sent menacé par ces nominations péjoratives et déstabilisé par le plaidoyer, aura tendance à adhérer aux arguments afin de relever de la première catégorie, celle des « nous » (l. 19). Pour appartenir à la majorité normale et indifférente, « nous sommes légion » (l. 19).</p>
+
+<p>Le jeu sur les pronoms et sur le point de vue, dans le sens de cette élection par opposition à la disqualification, confirme l’axiologie (système des valeurs) dans le texte, très porteur. Le « je » (l. 1) ouvre la première partie et parcourt le débat ; il s’épanouit ensuite dans un « nous » (l. 19-40), qui est une addition d’unités et vise à connoter l’unanimité autour de valeurs partagées.</p>
+
+<p>Le « on » (l. 25) est chargé d’une réprobation implicite (désapprobation, défiance) ; il discrédite la proposition toute entière de la ligne 25. Comme c’est un mot caméléon, « on » peut neutraliser certaines oppositions mais aussi généraliser le propos pour lui donner une dimension abstraite. C’est le sens de la séquence sur le plan logique.</p>
+
+<p>Dans l’enchaînement obtenu par l’anadiplose (reprise du dernier mot d’une expression au début de l’expression suivante) de liaison, il suffit à Zola de développer son point de vue. </p>
+
+<p><h4>Dernière partie (l. 38 à 44) </h4>
+Zola revient à l’émotion. Après son raisonnement, il reprend son point de vue personnel et termine sur une montée en intensité, marquée par des interrogations de plus en plus fortes. </p>
+
+<p><h3>Conclusion </p></h3>
+
+<p>La progression de cet article, une des clés de son efficacité, se fait en plusieurs parties :</p>
+
+<p>- Zola pose le sujet grâce à un flot de phrases interrogatives qui permettent, en outre, de faire entrer le lecteur dans le texte. Il exprime ses sentiments dans un accroissement qui aboutit à une question frappante : « Pourquoi toutes les bêtes sont de ma famille, comme les hommes, autant que des hommes ? » Ici, Zola élève le débat : les animaux appartiennent à la même famille morale que les humains.</p>
+
+<p>- Dans la deuxième partie du texte, il mène l’enquête intellectuelle, telle que « classifie » (l. 19), « enquête » (l. 21), « loi générale » (l. 24). Il réfléchit et fait réfléchir. Il avance des hypothèses et infirmé (conteste) des préjugés collectifs, développant son point de vue avec ampleur.</p>
+
+<p>- Enfin, il rédige une partie où il fait à nouveau appel à la sensibilité du lecteur, et le questionnement reprend.</p>
+
+<p><h2><u>VII. Métamorphose, Ovide (I° siècle av. JC)</p></h2></u>
+
+<p>Poète mondain et raffiné, Ovide dans les métamorphoses racontent envers les changements qui ont fait le monde la perpétue encore sorte de compilation du patrimoine mythologique de plus les récits de création.</p>
+
+<p>Ici dans un présopopé (faire parler un absent mort) 
+Il fait parler le célèbre mathématicien qui dans ces vers dorés soutiennent que tout à une âme : animaux humains et non humains, végétaux et même les minéraux. </p>
+
+
+<p style="color: #4CAF50;">
+<span style="text-decoration: underline;">Problématique&nbsp;:</span> En quoi ce texte s'apparente-t-il à un réquisitoire ?
+
+<p>Un texte dissuasif </p>
+
+<p>Pythagore utilise de nombreux procédés rhétoriques pour interpeller son auditoire. Tout d'abord il s'intéresse directement à lui parle de biais de nombreux pronoms de la deuxième personne du pluriel “vous” puis du singulier “tu” (l. 13). Il insiste sur cette prise à partie grâce à l'anaphore “vous avez” (l. 1-2-3). Hélas (l. 10) et un autre moyen d'interpeller l'auditoire en lui signifiant son dépit et sa reprobation, ce qui renforce la modalité exclamative (l. 12). Puis les questions rhétoriques (l. 12-16) qui prennent à partie l'auditoire et le met face à ses responsabilités.</p>
+
+<p><h3><u>Un blâme</p></h3></u>
+
+<p>
+Dès la première phrase, l'orateur accuse ses contemporains de « souiller leur corps d'aliments abominables » (l. 1).
+C'est le régime carnivore que blâme Pythagore, qu’il considère comme « un crime » (l. 10 et 20), consistant à « broyer ».
+</p>
+
+<p>
+Le lexique péjoratif met en avant des termes connotant la souillure, l'impureté matérielle. Lorsque Pythagore énonce la formule
+« appétit déréglé » (l. 16), il recourt à des termes scientifiques dans le but de présenter le régime carnivore comme un
+« dérèglement psychologique ». Il utilise également des termes juridiques comme « crimes » (x2 - l. 10-20), constituant le point
+culminant de sa diatribe.
+</p>
+
+<p><h2><u>Conclusion</strong></p></h2></u>
+
+<p>
+La thèse de Pythagore affirme que manger de la chair animale est contraire à la nature et moralement mauvais,
+car les animaux possèdent une âme et font partie du même ordre que les êtres humains.
+</p>
+
+</p>
+
+        `
+      },
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {
+    titre: "Séquence 2 — La Bête Humaine",
+    parties: [
+      {
+        titre: "Séquence 2 -Du réel au symbole à travers un roman naturaliste",
+        contenu: `
+<p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Séquence 2 : La Bête Humaine</title>
+</head>
+<body>
+
+<h1 style="color: red; text-decoration: underline;">
+SEQUENCE 2 - DU RÉEL AU SYMBOLE À TRAVERS UN ROMAN NATURALISTE
+</h1> <br>
+<u>Objet d'étude :</u> Le roman et le récit du XVIII° s.<br><br>
+
+<u>Lecture analythique :</u> La Bête Humaine (1890) E. Zola, GF Flammarion n°1319<br><br>
+
+<p><h2><u>Introduction aux thèmes du roman et bilan de lecture<p></h2></u>
+
+<p>
+Parue en 1890 la Bête Humaine et le 17e volumes des Rougon-Macquart sur les 20. Cet ouvrage est l'héritier du roman noir et l'ancêtre du thriller. L'histoire se déroule dans les années 1870. Le texte reflète l'aspiration du progrès propre au XVIIIe siècle et les craintes que ce progrès engendre, à la différence de Germinal ce roman ne vise pas à explorer la question des cheminots à la fin du siècle des révolutions, mais il montre bien le climat de contestation et l’instabilité de la fin du Second Empire ainsi que la corruption judiciaire qui caractérise celui-ci.
+</p>
+
+<p>
+Zola est très inspiré par différentes théories scientifiques comme celle de Prosper Lucas sur l'hérédité ou bien de Césaree Lombroso dans l'Homme Criminel (1876) où sont exposés les théories de la détermination atavique (hérédité des caractéristiques psychologiques) dans le domaine de la psychologie criminelle, qui lui ont servi à élaborer le personnage de Jacques Lantier. C'est ce que révèle le premier titre envisagé Retour Atavique, à la question du déterminisme environnemental inspiré de Claude Bernard étudier dans le Roman Expérimental (recueil d'articles de Zola) s'ajoute dans la Bête Humaine une question : “D'où vient en l'homme des pulsions du crime point d'interrogation”
+</p>
+
+<h3><u>1)L'illustration de couverture</h3></u>
+
+<p>
+La couverture associe au personnage l'objet qui lui correspond sur le plan social, elle associe au mécanicien sa machine et sur le plan symbolique elle associe deux bêtes humaines, deux pulsions violentes, deux machines.
+</p>
+
+</body>
+</html>
+
+<h3><u>2) Les principaux personnages : un roman triple</h2></u>
+
+<p>
+Dans l'ébauche préparatoire du roman, Zola se fixe 3 objectifs : “l'étude de l'hérédité du crime; l'étude de la magistrature avec l'instruction et l'administration du chemin de fer, l'étude d'une grande ligne”
+</p>
+
+<h4>Personnages de la Justice</h3>
+
+<ul>
+<li>Le Président Grandmorin &gt; Ancien magistrat (p.47)</li>
+<li>Mr Denizet &gt; Juge d'instruction (p.128)</li>
+<li>Mr Camy-Lamotte &gt; Secrétaire général ) (p.129)</li>
+</ul>
+
+<h4>Personnages du Chemin de Fer</h3>
+
+<ul>
+<li>Roubaud &gt; Sous-Chef de la Grande du Havre (p.43)</li>
+<li>Misard &gt; Aiguilleur à la Croix-de-Maufras (p.76)</li>
+<li>Jacques Lantier &gt; Mécanicien (p.71)</li>
+<li>Pecqueux &gt; Chauffeur (p.53)</li>
+<li>Président Grandmorin &gt; Président de la Compagnie (p.47)</li>
+<li>Flore &gt; Garde-barrière (p.75)</li>
+<li>La Lison &gt; Locomotive (humanisé)</li>
+</ul>
+
+<h4>Personnage Criminels</h3>
+
+<ul>
+<li>Roubaud &gt; Tue Président Grandmorin (Vengeance)</li>
+<li>Séverine &gt; Tue Président Grandmorin (Vengeance)</li>
+<li>Jacques Lantier &gt; Tue Séverine (pulsions meurtrières)</li>
+<li>Flore &gt; Tue 100 personnes et 5 chevaux (Vengeance amoureuse)</li>
+<li>Misard &gt; Tue Tante Phasie (sa mère &gt; héritage)</li>
+</ul>
+
+<p>
+Plusieurs personnages comme Jacques Lantier, Grandmorin, Roubaudou Misard assurent le lien entre les différents milieux.
+</p>
+
+<h3><u>3) Remarque sur le titre de l'oeuvre</h3></u>
+
+<p>
+Au chapitre 6, à la page 212. C'est le seule passage où apparaît l'expression “Bête Humaine". Un apparant oxymore mais un titre polysémique (plusieurs sens). P. 14 à 15 de la préface, on peut voir que plusieurs titres ont été envisagés.
+</p>
+
+<h3><u>4) Lecture d'images. Du roman de Zola au film de Renoir</h3></u>
+
+<p>
+Ce roman a donné lieu à 2 adaptations cinématographiques :
+Human Desire : Fritz Lang (1954) avec Glenn Ford.
+La Bête Humaine : 1938 de Jean Renoir avec Jean Gabin.
+</p>
+
+<p>
+Ce photogramme montre Jacques faisant mine d'étrangler Flore. L'apparente scène de violence peut aussi se traduire en  même temps à une scène amoureuse.
+L'expression du visage de Jean Gabin s'apparente à la formule p.360. Emprise mortelle ou étreinte amoureuse ? Talus de voie ferrée ou est-ce un endroit éloigné de la gare ?
+</p>
+
+<p>
+Le chemin de fer lié à l'essor de l'industrie s'impose comme une des nouveautés les plus spectaculaires du siècle. Il fut l'une des grandes réalisations du Second Empire. En 1858, 8675 km de voies ferrées ont été construites et 20000 km après le règne de Napoléon III.
+</p>
+
+<p>
+En 1960 ont construit 80 locomotives par an. 6 grandes compagnies existaient à cette époque : Compagnie de l'Est, Compagnie du Nord, Compagnie de l'Ouest, Compagnie du Midi, Compagnie du Paris-Lyon-Marseille (PLM) et la Compagnie d’ Orléans.
+</p>
+
+<h2><u>Chapitre 1 : (p.43-44) du début &gt; tâchait le jour pâle</h2></u>
+
+<p style="color: #4CAF50;">
+Comment cet incipit introduit-il le lecteur dans ce roman naturaliste et avec quelle partie de lecture ?
+</p>
+<h3><u>I) Entré dans le roman</h3></u>
+
+<h4>Le jeu des points de vues</h4>
+
+<p>
+L'entree abrupte de Roubaud dans la chambre correspond à l'entrée dans le roman. Comme par minimetisme du réel par rapport au roman, Roubaud ouvre une porte et une fenêtre pour faire voir Paris : la longue description qui s'ensuit (p.2-3) donne d'emblée au roman me monde ferroviaire comme univers privilégié.
+</p>
+
+<h4>Le descriptif par alternance</h4>
+
+<p>
+Le description est celui nstruit en alternance gauche - droite (l. 17 “gauche" l.22 “droite") ainsi par un élargissement d'un champs de vision en faisant écho au rail qui s'écartent en “un éventail" (l. 26-27).
+</p>
+
+<p>
+L'incipit répond aux attentes du lecteur en fixant comme cache à la narration, un espace clairement référencé . Point de départ du récit &gt; description de la gare Saint-Lazare, point de départ des trains.
+</p>
+
+<h4>Comment le personnage romanesque est-il introduit ?</h4>
+
+<p>
+Zola présente discrètement le personnage : nom et emploi, presentation par le nom de famille (l. 1) succède par substitution lexicale l'expression “le sous-chef de gare" (l. 5) puis est évoqué la Compagnie de l'Ouest (l. 8) dont Roubaud est un employé comme en témoigne sa présence dans ma chambre. Les lecteurs se voient donc instruit par le narrateur sans qu'il y paraisse vraiment.
+</p>
+
+<h3><u>II) Un réalisme ambigüe</h3></u>
+
+<h4>L'illusion référentielle</h4>
+
+<p>
+Dans la première phrase, l'opniscience du narrateur permet de faire pénétrer le lecteur dans un univers identifié comme en étant le plus proche du réel. Les effets de réels sont dit de “notoriété” dans la première phrase. La minutie avec laquelle la chambre de Roubaud est située (précision des repères spatiaux : “quartier de l'Europe” (l. 11) “Impasse d'Amsterdam” (l. 7) “Tunnel des Batignolles” (l. 24) &gt; toponyme qui existent vraiment), les remarques du narrateur au sujet de la mère Vistoire (l. 4) ou bien les renseignements sur la Compagnie de l'Ouest sont des effets de réels.
+</p>
+
+<p>
+Le travail préparatoire de prise de notes et d'enquête de Zola (cf. p. 28) et perceptible dans l'extrême précision les technicité des éléments de descriptifs.
+</p>
+
+<h4>Les marques de subjectivité du narrateur</h4>
+
+<p>
+Même si la scène est globalement envisagée du point de vue de Roubaud , les métaphores ligne 15, 26 et 27 et la volonté de grandissement “géant” (l. 18) qui caractérise les descriptions de la gare et du ciel sont à mettre sur le compte du narrateur ainsi que toutes les éléments qui donnent à la scène une dimension picturale, voire impressionniste. La dernière phrase du passage expose nettement “l’ effacement confus des wagons” à “un grand signal rouge tâchant du jour pâle” (l. 31 et 32) cf C .Monet, La Gare Saint-Lazare.
+</p>
+
+<p>
+Conclusion : l'entrée dans le roman est emblématique du mouvement naturaliste, l'entrée du lecteur dans la fiction et reflétée par celle du personnage dans un lieu précisément décrit qui donne d'occasion au lecteur de le découvrir par les yeux du protagoniste.
+(Beaucoup plus naturel). Mais le réalisme de cette description’est nuancée par la subjectivité du narrateur qui met en forme ce réel, le poétise comme au peintre qui compose sa toile et choisit ses couleurs.
+</p>
+
+<h2><u>Chapitre 2 : de “alors Jacques les jambes brisés” à “dormans sur le ventre”</h2></u>
+
+<h3>Introduction au roman du crime</h3>
+
+<table border="1">
+<tr>
+<th>Pages.</th>
+<th>Coupables.</th>
+<th>Victimes.</th>
+<th>Circonstances</th>
+</tr>
+
+<tr>
+<td>Page 82 et 88</td>
+<td>Président Grandmorin</td>
+<td>Louisette et Séverine</td>
+<td>Au cours d'une tentative de viol par Grandmorin, elle a été blessé et est morte chez son ami Cabuche.</td>
+</tr>
+
+<tr>
+<td>Page 97</td>
+<td>Séverine et Roubaud</td>
+<td>Grandmorin</td>
+<td>Robot venge Séverine pour le viol de Grandmorin</td>
+</tr>
+
+<tr>
+<td>Page 240-308</td>
+<td>Misard</td>
+<td>Tante Phasie</td>
+<td>Misard empoisonne Tante Phasie</td>
+</tr>
+
+<tr>
+<td>Page 321</td>
+<td>Flore</td>
+<td>Passagers<br>5 chevaux<br>La Lison</td>
+<td>Vengeance amoureuse Flore fait dérailler le train.</td>
+</tr>
+
+<tr>
+<td>Page 363</td>
+<td>Séverine</td>
+<td>Jacques</td>
+<td>Pulsion meurtrière.</td>
+</tr>
+
+<tr>
+<td>Page 397</td>
+<td>Pecqueux Lantier</td>
+<td>Pecqueux Lantier Soldats</td>
+<td>Jacques a eu une relation amoureuse avec la maîtresse de Pecqueux, ils se battent et il tombent.</td>
+</tr>
+</table>
+
+<h3>La genèse du criminel</h3>
+<br>
+Lien arbre généalogique Jacques Lantier
+<a href="https://fr.pinterest.com/pin/70298444155274754/">
+  Clique ici
+</a>
+
+<p>
+Dans la famille des Rougon-Macquart donc E. Zola s'attache à retracer l'histoire dans toute son oeuvre, les Lantier occupent une place à part. Les membres de cette famille semblent marquer par leur origine populaire et l'hérédité du vice.
+</p>
+
+<h3>La fêlure héréditaire</h3>
+
+<p>
+Le discours indirect libre et utilisé pour donner au lecteur un accès au déchirement intérieur du criminel né (Jacques) habitée par un désir de meurtre qui ne peut réfréner et par l'horreur que ce désir lui inspire. Les phrases exclamatives et interrogatives, les apostrophes “mon dieu” (l. 3) marque ce dilemme intérieur du personnage soumis à des pulsions destructrice
+</p>
+
+<p>
+L'histoire de la passion meurtrière est donner à lire dans un monologue intérieur qui explicite le caractère fatidique de la félure héréditaire ( parag. 2) ci-trouve exprimé explicitement les théories de Zola sur l'hérédité et les déterminer de l'atavisme avec notamment l'alcool comme cause potentielle “les générations d'ivrognes dont il était le sang gâté” (parag. 2), l'emploi de l'imparfait dans “devait coûter à Gervaise tant de larmes (parag. 2), montre que Zola abandonne un instant la posture du narrateur romancier pour se faire théoricien du roman et de l'homme dénombrants l'ordre des générations, des enfants et des âges.
+</p>
+
+<p>
+Enfin la métaphore qui associe l’homme â la bête apparaît dans ce paragraphe plusieurs à plusieurs reprises “une sauvagerie qui le ramenait au loup mangeur de femme” (parag. 2)
+</p>
+
+<p>
+Le lien de l'entrée noir du tunnel constitué une figure symbolique de l'introspection (retour en soi-même, auto-analyse ) qui permet de rattacher ce monologue intérieur aux éléments du récit.
+</p>
+
+<h3>Un personnage obsessionnel.</h3>
+
+<p>
+Répétition, anaphore, accumulation… accentue le caractère atroce et obsédant des pensées de Jacques “cette fille, cette fille qui l'avait voulu tuer (parag. 3) “tué une femme, tué une femme (parag. 1) à travers une énumération, le défilé de cauchemars des femmes que Jacques a envisagé d'assassiner.
+</p>
+
+<p>
+Multiplication des adjectifs qualificatifs, précision des détails donnés dans l'évocation concrètes du désir “C'était dans son être de subit perte d'équilibre (...) qui déformait tout (parag. 2) et de son objet : cette chaire, cette gorge chaude et blanche (parag. 1)
+</p>
+
+<h3>Jacques et le déterminisme scientifique</h3>
+
+<p>
+Jacques incarne une partie de l'homme en partie nouvelle et nourrit de théorie scientifique concernant le déterminisme et l'hérédité qui correspondent à la naissance de la psychiatrie au début du 19e siècle. (confère “Le roman Expérimental” Émile Zola - 917-006/0036) le projet du roman est perçu comme une avancée scientifique ou des personnages sont des cobayes et les espaces romanesques de laboratoires.
+</p>
+
+<p>
+Avec les Rougon-Macquart il s'agit d'écrire comme l'indique la préface, l'histoire “naturelle et sociale d'une famille sous le Second Empire” or il s'agit d'un régime de corruption et de spéculations.
+</p>
+
+<h3>Comparée</h3>
+<ul>
+<li>Incipit</li>
+<li>Excipit</li>
+<li>Temps Verbaux</li>
+<li>Emplois de l'imparfait et du Passé-Simple.</li>
+<li>Descriptif</li>
+<li>Les Passé-Simple établissent une description en mouvement.</li>
+<li>Narration</li>
+<li>Imparfait Narratif</li>
+<li>Rien ne vient conclure cette imparfait narratif qui s'achève.</li>
+<li>Les derniers verbes à l'imparfait semblent suspendre la narration dans un temps suspendu.</li>
+</ul>
+
+<h3>La focalisation</h3>
+
+<p>
+Focalisation interne Roubaud est le seul à observer des trains entrant dans la gare : “il” et des verbes de perception “il n'apercut pas" (l. 50) “il vit" (l. 51) “il distingua" (l. 63) Les trains sont en positions d'objets comme éléments réaliste.
+</p>
+
+<p>
+Focalisation externe “la machine lancée à pleine vitesses” empêche toute focalisation externes “relayer tour à tours par les passagers et les employés qu'elle traverse” (l. 19 29 41 et 42) des noms collectif la gare (l. 35) plus les fréquentes positions des sujets pour décrire le train fou.
+</p>
+
+<h3>L'expression pour évoquer le train</h3>
+
+<p>
+“Il suivit des yeux (...) la machine-tender (l. 38-40) &gt; dénotation du train et technicité et réponse aux attentes des lecteurs ouvrant un roman de Zola. Le train est décrit de manière réaliste fortement structuré : les machines sont examinées l'une après les autres dans leurs activités et desigens avec exactitude “le train de 3h25 en direction de Caen" (l. 48) &gt; effets de symétrie.
+</p>
+
+<p>
+Infinis “galops” (l. 14) “caval” Désignation du train peut l'associer à un animal effaré. Le train est décrit de façon allégorique &gt; connotation anaphorique. “le train fou lancé à pleine vitesse" donne à l'excipit une ligne de fuite ponctuée de l'expression récurrente indéfinis de “on”. Figuration d'une méfiance en le caractère aveugle du progrès soumis à cette “Bête Humaine" qu'est l'homme. Figurations pessimiste d'une société qui va s'écraser faire la défaite militaire de 1870.
+</p>
+
+<h3>Les énumérations</h3>
+
+<p>
+“Il suivit des yeux (...) voies de remisage” effet d'inventaire et précisions techniques. La personnification est plus humaine (l. 52) la machine (La Lison) est comparée à une personne. “Et la machine roulait, roulait… “. (l. 7) “Et la machine libre…” (l. 1). Elle semble donner le vertige, produire un rythme emballant du rythmes du récit en s'accompagnant de réception. La personnification des machines est plus brutale. "Le roulement du monstre échappé” (l. 33).
+</p>
+
+<h3>Conclusion</h3>
+
+<p>
+Nous partons d'un monde perçu comme objet d'une perception naturaliste remarquable par ses précisions et sa structure à un monde entraîner par les tourbillons d'une locomotive lancée vers la destruction à la guerre. L'étude comparée de ces deux passages permet de comprendre que le réalisme cède le pas à l'allégorie.
+</p>
+
+<h2><u>Chapitre X (p. 331-332) de “enfin Jacques ouvrit les paupières" à “sans qu'il put les retenir"</h2></u>
+
+<p>
+<h3>La Lison symbole aux personnages à part entière<h3>
+</p>
+
+<h4>1. La personnification de la machine</h4>
+
+<p>
+Deux champs lexicaux cohabitent : d’une part la mécanique et la technique, et d’autre part le biologique et le vivant. Une cascade de comparaisons permet à Zola de les mettre en rapport (l. 24). Par ses entrailles crevées fonctionner ses organes (p. 24–29). Tout le passage est structuré sur une métaphore qui décrit la mort de la machine en des termes humains.
+</p>
+
+<p>
+On peut noter au début de l’extrait l’alternance entre les pronoms “elle” et “il” qui fait de ce passage une véritable mort tragique à l’intérieur vue à travers le regard du personnage principal, Jacques. “La maladie contractée dans la neige” (l. 11–12) apparaît comme la responsable de la défaillance mortelle de la Lison. “La fin tragique d'une bête de luxe qu'un accident foudroie” (l. 22–23).
+</p>
+
+<h4>2. Du registre burlesque au registre épique</h4>
+
+<p>
+Comme on peut le lire (p. 20–23), la liaison de Jacques et Séverine constitue avec Roubaud un trio tandis que le mécanicien et le chauffeur se partagent eux-mêmes la Lison ; et que Flore veut reprendre Jacques à Séverine : tout est ménage à trois dans ce livre.
+</p>
+
+<p>
+Le registre burlesque apparaît dans le déni de Jacques de suivre dans “la mort”, cette héroïne de tragédie post-industrielle, qu'est la Lison : “Il croyait être emporté dans le dernier petit souffle de la machine” (l. 41–42). Et dans l'expression du “ménage à trois” (l. 47), mais dans le jeu de focalisations qui caractérise le passage, cette expression burlesque…
+</p>
+
+<p>
+Quand Émile Zola fait de la Lison un être vivant quand il la montre belle dans sa jeunesse puis atteinte sous un ouragan de neige une maladie profonde puis enfin mourante d'une mort violente “éventrée, rendre l'âme” (l. 29), il donne une dimension épique à la machine. Le rythme joue sur les amplifications comme le souligne le rythme ternaire des trois compléments à l'infinitif de cadence croissante. “Un instant, on avait pu voir, par ses entrailles crevés, fonctionner ses organes, les pistons battre comme deux cœurs jumeaux (...) pareil à des bras convulsifs. Les trois minéraux (l. 33) ainsi que de nombreuses accumulations verbales et apposition (l.20-21) peignent de façon éloquente la mort de l'héroïne. Certaines structures syntaxiques comme l'hyperbate allonge le rythme de la phrase “sans compter que l'âge arrive qui endurci les membres (l.13-14).
+</p>
+
+<h2><u>Conclusion finale</h2></u>
+
+<p>
+On peut noter la fascination du progrès technique au 19e siècle pour la machine, support d'une imagination débordante qu'il tente toujours de mettre en relation avec le phénomène vital comme pour en apprivoiser l'étrangeté et la nouveauté à travers le spectacle et la mort symbolique de la Lison éventrée. On peut lire de la part de Zola une tentative métaphorique usant d'interpréter de manière vitaliste (en mettant de la vie) un monde en pleine mutation marquée par la révolution industrielle.
+</p>
+
+<h3><u>Étude d'un tableau réaliste</h3></u>
+
+<p>
+Les raboteurs de parquets <br>
+Gustave Caillebotte <br>
+&gt; Organiser la 1e exposition impressionniste.<br>
+&gt; Boulevard vus du haut
+</p>
+
+<p>
+Une exploitation de la réalité contemporaine avec une objectivité inédite.
+</p>
+          
+</p>
+        `
+      },
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+ {
+    titre: "Séquence 3 — Candide (Voltaire) et 1984 (G. Orwell)",
+    parties: [
+      {
+        titre: "Séquence 3 - Utopie et Dystopie dans le récit",
+        contenu: `
+          <p>
+          <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Séquence 3 : Utopie et Dystopie</title>
+</head>
+<body>
+
+
+<h1 style="color: red; text-decoration: underline;">
+SEQUENCE 3 - UTOPIE ET DYSTOPIE DANS LE RÉCIT
+</h1> <br>
+
+<u> Objet d'étude :</u>Le roman et le récit du XVIII° au XIX° siècle<br><br>
+
+<u>Lecture analythique :</u> Candide ou l'Optimisme<br><br>
+
+<u>Lecture Cursive :</u> 1984 (G. Orwell 1949)
+<p></p></>
+<br>
+<p style="color: #4CAF50;"> <u>Problématique</u>
+Fonction et Fonctionnement de l'utopie et la dystopie.
+</p>
+
+<h2><u>Introduction</h2></u>
+
+<p>Voir photocopie &gt; 225-004/0047</p>
+
+<p>
+C'est incipit dresse le décor, brosse le succinct des personnages et présente le thème philosophique qui sera débattu tout au long de l'œuvre. 
+On se demandera : Comment Voltaire parodie ce qui est présenté comme un paradis et s'en prend implicitement au philosophe Leibniz par rapport à sa théorie sur l’ironie qui met d’emblée le lecteur du côté de Voltaire.
+</p>
+
+<h2><u>I) La parodie du conte</h2></u>
+
+<h3>Le lieu</h3>
+
+<p>
+La formule initiale : “il y avait en Westphalie (l. 1), évoque le cadre de présentation successives des personnages, élément qui d'ordinaire caractérise les contes. 
+La région de Westphalie se situe en Allemagne : pays de Leibniz, philosophe théoricien de l'optimisme que combat de Voltaire. 
+La Westphalie est aussi la province la plus pauvre d’Allemagne. 
+En la choisissant comme Eden fondateur du conte, Voltaire souligne la médiocrité de cet idéal.
+</p>
+
+<p>
+Après la situation géographique : on a la présentation du héros du conte, vivant dans cette région. 
+Définition du héros par l'accord entre son apparence et son être un personnage transparent et naïf si fréquent dans les contes. 
+Définition des personnages par des traits génériques : chacun remplit une fonction actantielle qui est aussi une fonction sociale en lien avec le château.
+</p>
+
+<p>Schéma Actantielle</p>
+
+<p>
+En fait le naïf est un sot et l'atmosphère idyllique du conte est une pure fiction (voir aussi la fraîcheur toute rustique de Cunégonde) 
+qui relève de l'idéalisation forcée, voulu par le baron et adoptée par tous ceux qui participent à ce monde sordide.
+</p>
+
+<h3>Des personnages types</h3>
+
+<p>
+L'évocation de Candide encadre celle des autres personnages (paragraphe 1 à 3), cela montre que Candide est le héros du compte mais motive aussi sa marginalité sociale de bâtard. 
+Candide est ensuite mis à la dernière place. 
+Les personnages se présentent dans un ordre familial et social hiérarchique: d'abord le baron de Thunder-Ten-Tronk, dont le nom est significatif: 
+on peut noter l'allitération en {T} et le sens du mot Thunder qui signifie tonnerre. 
+Il souligne l'emphase du personnage qui se croit très puissant &gt; onomastique (le nom du personnage et programmatique, qui le caractérise), 
+ensuite vient la baronne réduite à son embonpoint 350 livre (170 kg) suivi de sa fille Cunégonde dont on retient le qualificatif de grâce. 
+La fille vient avant le fils, ce qui annonce le rôle majeur de Cunégonde. 
+Ensuite le fils du baron dont on se contente de noter qu'il paraissait digne de son daron le chauve” 
+Le compliment se retourne en satyre. 
+Enfin cette présentation finit par Pangloss, le savant ridicule.
+</p>
+
+<h2><u>II)Un mentor “nigologue"</h2></u>
+
+<h4>La spécialité de Pangloss</h4>
+
+<p>
+Ce nom suggère que la philosophie que dispense Pangloss est un four-tout où se mélangent toutes les autres disciplines. 
+Le fait qu'il soit spécialiste de tout le rend suspect et le rend finalement spécialiste de rien. 
+La fin du mot “nigologue" (de néologie) terminé le mot value (métaphysico-télégo-cosmonlonigologie). 
+Il est construit sur le terme grec de “ligos", signifie discours, science, language…
+Son enseignement concerne alors la science des nigos ou la sottise du public.
+</p>
+
+<h4>Un maitre qui raisonne</h4>
+
+<p>
+Pangloss inverse toutes les relations logiques entre causes et conséquences dans une vision absurde du déterminisme. 
+Ainsi, selon lui “les nez ont été faits pour porter des lunettes, ainsi avons-nous des lunettes” &gt; inversement du rapport logique.
+Exemple : “les jambes” (l. 47), “les pierres" (l.49)
+Dans les phrases de Pangloss on a une satire de la philosophie du déterminisme par un raisonnement erroné.
+L'effet comique est renforcé par le fait d'argumentation. 
+Ces dernières donnent au texte des allures de rigueur grâce à l'utilisation de liens logiques “car" (l.43) “pour" (l.45) “aussi" (l.47)
+</p>
+
+<p>
+Son ton assertif (catégorique) renforce le ridicule de son discours dans la mesure où il présente ses absurdités comme des évidences
+“il est démontré" (l. 42) " nécessairement” (l. inconnues) tout en critiquant ces détracteurs “ce qui - fin parag. 6"
+Le raisonnement formel est sans contenu. Pangloss parle pour ne rien dire : étymologiquement celui-qui est tout entier dans la parole.
+</p>
+
+<h4>La théorie de l'optimisme</h4>
+
+<p>
+À travers Pangloss, Voltaire se moque de Leibniz, un philosophe de son époque et de ses disciples. 
+Leibniz veut résoudre les problèmes suivants: Comment comprendre qu'il y ait eu du mal dans le monde si Dieu existe. 
+Il explique en substance que rien n'est aussi parfait que Dieu, donc que le monde n'est pas parfait comme Dieu est bon. 
+Il a créé le monde le plus harmonieusement possible. 
+En mettant Pangloss en scène, Voltaire biase les propos de Leibniz pour tourner la philosophie optimiste en ridicule en parodiant le jargon philosophique : métaphysico-télégo-cosmonlonigologie. 
+Il n'y a points d'effet sans cause “nécessairement" et “fin".
+</p>
+
+<h2><u>III La candeur de Candide</h2></u>
+
+<h3>Un nom prédestiné</h3>
+
+<p>
+L'onomastique du nom Candide est transparent dans la mesure où il reflète la naïveté superlative su personnage “l'esprit le plus simple"
+Le nom signifie étymologiquement : blanc, naïf. 
+Le doute que forme le narrateur dans les lignes 6 et 7 quant à l'origine du mot ironique dans la mesure, il vient de le demander.
+</p>
+
+<p>
+Dans la suite du texte on a une confirmation de cette piste onomastique puisque le jeune héros se caractérise par sa profonde ingénuité. 
+Cette innocence apparaît dans sa relation avec son maître dont il boit les paroles sans manifester le moindre esprit critique 
+la formule “avec toute la bonne foi de son âge et son caractère” suggère la crédulité du jeune homme face à la leçon du philosophe.
+</p>
+
+<p>
+Dans le dernier paragraphe le narrateur souligne que Candide croyait innocemment ses discours avant de montrer au discours indirect (fin paragraphe 6) 
+et “il conclut (…) par conséquent de toute la terre” que Candide est totalement perméable à l'influence de Pangloss puisqu'il adopte exactement ce mode de pensée déterminisme &gt; trait stylistique.
+</p>
+
+<p>
+Dans les derniers paragraphes il y a un décalage entre la réalité et la perception de Candide qui repose sur l'utilisation de la focalisation interne 
+(v. perception) &gt; Candide écoutait, trouvait… 
+Tout cela souligne l'ironie et la vision de Candide idéalisé autour d'un univers contrasté avec une vision ironique du narrateur
+</p>
+
+<p>
+Les superlatifs, les noms, les hyperboles sont nombreux dans cet incipit “les mœurs les plus douces” “71 quartiers” (l. 12) 
+“le meilleur des mondes possibles”. 
+Ces expressions du second degré et hyperboles ont un effet ironique évident et fonctionnent en paraphrase. 
+(Paraphrase : procédé stylistique traditionnel du conte de Voltaire qui s'amuse à les détourner en les décalant.) 
+On a donc à la fois une inscription du genre du conte par effet de style et mise à distance critique du monde idéalisé et hyperbolique que les contes mettent en scène.
+</p>
+
+<h3><u>Conclusion</h3></u>
+
+<p>
+Voltaire parodie le premier chapitre qui se situe dans le jardin d'Eden. 
+Adam est ici : Candide et Cunégonde qui le séduit représente Eve. 
+Cet Eden sera bientôt chasse et met en place la référence d'un premier paradis qui servira de référence constante à la quête du héros jusqu'à la récompense finale.
+</p>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Suite - Candide Analyse</title>
+</head>
+<body>
+
+<h2><u>Analyse de L'Eldorado de “20 belles filles de la garde” à “ ce n'était pas ce qui l'étonnant le moins” (p. 137-138)</h2></u>
+<br></>
+<p><u>Candide ou l'Optimisme, un conte philosophique</p></u>
+
+
+<p>
+Le conte se présente comme un conte traditionnel mais l'auteur s'écarte des conventions du genre pour mêler ironie et satire de la société. 
+Le chapitre 17 renoue avec le conte oriental : arrivée de Candide et Cacambo en Eldorado par un passage dans une grotte où coule une rivière. 
+Cela rappelle le sixième voyage de Sinbad Le Marin dans les 1001 nuits. 
+Mais les deux chapitres reprennent la veine littéraire de l'utopie (mot créé par Thomas More au 16e siècle pour désigner une île où il situe la réponse de ses rêves. 
+Mais l'idée apparaît déjà dans l'Antiquité, avec par exemple le mythe de la République de Platon ou bien des jardins d'Alkinoos dans l'Odyssée d'Homère puis à la Renaissance avec L'abbaye de Thélene de Rabelais) 
+qui signifie l'évocation d'un monde parfait qui n'existe nulle part. 
+Les deux chapitres s'apparentent au roman d'apprentissage “nous nous demanderons comment l'Eldorado donne un exemple idéal de la société”.
+</p>
+
+<h2><u>I) Un monde merveilleux</h2></u>
+
+<h3>Une description séduisante</h3>
+
+<p>
+L'accueil par “20 belles filles de la garde”, “le tissu de duvet de colibri”, “les 1000 musiciens” 
+mais aussi la ville avec l'énumération “les édifices publics élevés jusqu'au nues, les marchés ornés de 1000 colonnes, les fontaines d'eau pure, 
+les fontaines d’eau rose, celle de liqueur de canne de sucre qui coulaient continuellement dans de grandes places pavées” (l. 16-18) 
+La paix règne car il n'y a pas de commission de justice… 
+Une définition de l'utopie “le lieu parfait”
+</p>
+
+<h3>Un décor exotique</h3>
+
+<p>
+L'impression d'exotisme et donner grâce à la faune et à la flore locale : cannelle, sucre… 
+Les coutumes semblent étrangères pour Candide : il s'apprête à saluer le roi selon les rituels en usage en Europe. 
+Il est surpris de la simplicité de la cérémonie : “l'usage est de baiser le roi des deux côtés”. 
+Le lexique de la surprise est mis en valeur dans le texte avec des tournures amphatiques “ce qui se surprit davantage” 
+ou bien par un polyptote ( &gt; répétitions de plusieurs mots ayant le même radical mais sous différentes forme) 
+“ce n’était pas ce qu'il étonna le moins”.
+</p>
+
+<h3>Un lieu parfait</h3>
+
+<p>
+Les termes hyperboliques sont nombreux (vingt, mille…), des adjectifs mélioratifs (belle, grands, grandes (l. 4 et 5)), 
+l'emploi de déterminant “toute la grâce imaginable” (fin du parag. 1), “les robes faites d'un tissu de colibri” (l. 3-4) 
+relève aussi de l'hyperbole puisque le colibri est un oiseau minuscule. 
+Il s'agit de produire l'émerveillement. 
+Ces termes marquent la perfection des lieux qui contraste avec la réalité.
+</p>
+
+<h2><u>II) Un miroir inversé des sociétés Européennes</h2></u>
+
+<h3>Une société égalitaire</h3>
+
+<p>
+La société d'Eldorado est plus égalitaire que les sociétés européennes. 
+Le roi les reçoit avec simplicité sans marquer sa supériorité. 
+Voltaire souligne avec ironie le décalage entre les différents rituels qui imaginent Candide selon ce qu'il a pu voir en Europe 
+et l'usage en vigueur en Eldorado “lécher la poussière de la salle” afin de dénoncer la servilité des cérémonies occidentales. 
+Le roi invité également les visiteurs à sa table. 
+On peut noter l'égalité hommes-femmes “vingts belles filles de la garde”
+</p>
+
+<h3>Une société de profusion</h3>
+
+<p>
+On remarque l'enchaînement et l'emboitement des expansions du nom (parag. 2) comme une forme de surenchère pour montrer la préciosité des lieux et des choses 
+“édifice publique élevé jusqu'au nues qui répandaient une odeur semblable à celle du girofle”
+</p>
+
+<h2><u>Conclusion</h2></u>
+
+<p>
+Voltaire illustre les idéaux des philosophes des Lumières, un pays de Concorde du à l'absence de différents qui rend donc inutile toute Cour de justice. 
+</p>
+
+<p>
+Un pays où la science et la connaissance sont misent à l'honneur avec le palais des Sciences. 
+Voltaire utilise aussi cette utopie pour dénoncer les sociétés européennes inégalitaires par des cérémonies officielles.
+</p>
+
+<p>
+Candide et Cacambo quittent l'Eldorado pour vivre une autre existence.
+Le conteur débusqué la vanité des personnages “si nous restons ici nous serons comme tout le monde”
+Voltaire prépare la suite du conte et annonce les découvertes des personnages.
+</p>
+
+<p>
+<u>Hugh Bulley, Candide et son valet Cacambo</u>
+</p>
+
+<p>
+L'aspect imaginaire et irréel de l'utopie et suggéré par les couleurs et la représentation de l'espace. 
+Les couleurs sont très vives ne correspondant pas la réalité &gt; ville et barque rose.
+</p>
+
+<p>
+Le technique du collage empêche la perspective aérienne et l'antité pour respecter le perspective mathématique. 
+Enfin on voit partout des montagnes pour rappeler l'isolement des utopies.
+</p>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Analyse Chapitre 19 - Candide</title>
+</head>
+<body>
+
+<h2><u>Analyse du Chap. 19 “En approchant de la ville, ils rencontrent un nègre” à “ et en pleurant, il entra dans Surinam” (p. 142-144)</h2></u>
+
+<h3>Introduction</h3>
+
+<p>
+En provenant de l'Eldorado seule étape heureuse de son périple, Candide découvre la pire des abominations : l'esclavage.
+En Europe, la polémique sur le statut des noirs et engagés opposant les philosophes des Lumières et des intérêts politico-économiques. 
+Nous nous demanderons comment la rencontre de Candide avec le n**** de Suriname est un passage narratif ou l'argumentation est la plus efficace, car elle joue sur plusieurs niveaux.
+Nous étudierons d'abord comment la mise en scène est rendue percutante, avant de nous pencher sur le discours sobre de l'esclave pour finalement voir comment ce réquisitoire favorise l'identification du personnage à leur réaction, empreinte d'émotion.
+</p>
+
+<h2><u>I) Une mise en scène percutante</h2></u>
+
+<p>
+La scène se déroule à Surinam, capitale de la Guyane. &gt; richesse du capital &gt; canne à sucre. 
+L'esclavage ne fut aboli en 1863 (1848 pour les colonies françaises). 
+Des espaces lointains sont convoités : l'Amérique, Afrique, d'où vient l'esclave “singe, perroquet, écus patagons, fétiche…” 
+Le n**** et triplement démunis, il est au sol, mutilé à la main et à la jambe. 
+(Confère le Code Noir, 1685, Colbert sous Louis XIV &gt; réglementé l’esclavage dans les colonies française) 
+D'après ce code l'esclave est un bien meuble. 
+La mère africaine naïve et cynique + le maître Vanderdendur (onomastique &gt; cruauté)
+Voltaire fait référence au commerce triangulaire.
+</p>
+
+<h2><u>II) Convaincu grâce au discours sobre de l'esclave</h2></u>
+
+<h3>Dénonciation des syllogismes</h3>
+
+<p>
+Un syllogisme est une forme de raisonnement déductif qui enchaîne logiquement deux prémisses pour aboutir à une conclusion nécessaire.
+</p>
+
+<p>
+D'une part les colonisateurs (clergé, marchand) les considèrent comme des hommes, leur apprennent que blancs et noirs viennent d'Adam. 
+D'autre part, ils sont vendus comme des objets…
+Voltaire dénonce cet incohérence par syllogismes.
+</p>
+
+<h3>Un raisonnement fondé</h3>
+
+<p>
+L'exposé de l'esclave est logique et clair : il s'appuie sur des connecteurs logiques “or, mais”. 
+Les propos de l'esclave sont ordonnés : parallélisme avec les bêtes &gt; meilleures conditions, choquant avec “1000 fois moins malheureux que moi” 
+une formule percutante “c'est à ce prix que vous mangez du sucre en Europe”.
+Le sucre agrémente le repas des occidentaux.
+</p>
+
+<h2><u>III) Persuader en favorisant l'identification au personnage</h2></u>
+
+<h3>Une description pathétique</h3>
+
+<p>
+C'est part de l'intérêt appitoyé avec ce pauvre homme à l'indignation (abomination) que Candide vient aux larmes puis au bouleversement de sa perception du monde (le refus de l'optimisme)
+</p>
+
+<h3>Dramatisation de la situation</h3>
+
+<p>
+Il y a la récurrence du lexique dramatique “Eh, mon Dieu”, “état horrible”, “hélas”. 
+L'hyperbole “1000 fois” véhicule l'émotion qui culmine avec les larmes mentionnées à deux reprises.
+</p>
+
+<h2><u>Conclusion</h2></u>
+
+<p>
+Candide se révolte pour la première fois contre l'argument de l'optimisme. 
+L'argument vise de cible : 
+1. contre le commerce triangulaire.
+2. contre le système de l'optimisme qui justifie de tels scandales.
+Dans le texte l'esprit des lois, Montesquieu prend la parole et se prend pour un noir.
+</p>
+
+</body>
+</html>
+
+
+</p>
+        `
+      },
+    ]
+  },
+
+ {
+    titre: "Séquence 4 - Fables de La Fontaine",
+    parties: [
+      {
+        titre: "Séquence 4 - La poétique de la Fable, jeux de tiroirs, jeux de miroirs.",
+        contenu: `
+<h1 style="color: red; text-decoration: underline;">
+SÉQUENCE 4 - LA POÉTIQUE DE LA FABLE, JEUX DE TIROIRS, JEUX DE MIROIRS
+</h1>
+<br><br>
+<strong></>
+<u>Oeuvre intégral :</u> Jean De La Fontaine - Fables - Livres VII à XII
+<br><br>
+<u>Objet d'étude :</u> La Poésie du Moyen-âge au XVIII
+<br><br>
+<p style="color: #4CAF50;">
+<u> Problématique :</u> La poésie satirique et encomiastique
+</p>
+</strong></>
+<br/>
+<h2><u>Présentation des Livres VII à XII</h2></u>
+<br>
+
+<h3><u>I. Biographie</h3></u>
+
+<p>Jean de La Fontaine (1621-1695) est un homme de lettres.</p>
+
+<p>Il a vécu en province en tant que garde-forestier en héritage de son père.</p>
+
+<p>En 1658, il se lance dans la littérature et se fait présenter à Nicolas Fouquet (le surintendant de Louis XIV, son premier ministre).</p>
+
+<p>Ce dernier est le rival de Colbert et un grand protecteur des arts.</p>
+
+<p>Pour se présenter, il a écrit un poème précieux Adonis, ce qui lui vaut une pension au château de Fouquet &gt; Vaux-le-Vicomte.</p>
+
+<p>La Fontaine est protégé par Fouquet. Dans son château, La Fontaine rencontre notamment Molière ou Corneille.</p>
+
+<p>Il vit une vie brillante à Vaux-le-Vicomte, ce somptueux château.</p>
+
+<p>Mais en 1661, Nicolas Fouquet est arrêté sur ordre de Louis XIV, jaloux de sa richesse et de son château.</p>
+
+<p>Dès lors, La Fontaine doit trouver de nouveaux protecteurs. Parmi eux, nous pouvons citer la Duchesse d'Orléans (qu'il appellera “Madame” dans ses fables). Il est en pension au Palais du Luxembourg où il rencontrera La Rochefoucauld, son ami. Il publie un recueil de contes en s'inspirant de Charles Perrault. Puis, à 47 ans, il publie un recueil de fables cette fois-ci (1668). Il change de protection en prenant Madame de La Sablière qui le protégera et le financera pendant 20 ans (il publiera son second recueil de fables).</p>
+
+<p>En 1684, il entre enfin à l'Académie française après avoir fait les éloges du roi pendant de longues années car, critiquant ce dernier, son poste lui s'est vu remis après une longue attente.</p>
+
+<h3><u>II. Œuvre</h3></u>
+
+<p>Jean de La Fontaine s'adonne à plusieurs genres : poésie de circonstance pour s'acquitter auprès de ses protecteurs, poésie galante, discours, conte…</p>
+
+<p>Il y a eu une nette évolution entre les trois recueils :</p>
+
+<p><strong>•1er recueil</strong><br>
+Le premier recueil s'adresse au Dauphin de Louis XIV, futur Louis XV qui a 8 ans à ce moment-là.<br>
+Ce premier recueil vise une instruction morale. La Fontaine est à ce moment-là le précepteur du Dauphin. Le but est d’“instruire et plaire”.</p>
+
+<p><strong>•2e recueil</strong><br>
+Page 203 &gt; Avertissement<br>
+“j'ai donné un air un peu différent… étendu les circonstances du récit”. Ce qui donne à ce deuxième recueil une richesse et une complexité à l'adresse du Dauphin qui a alors 15 ans.<br>
+Dans ce deuxième recueil, il n'est pas nécessaire de dégager une morale. Le sujet est plus complexe. Les dialogues s’étendent &gt; éloignement d'Ésope pour les récits purs. La moralité (s'il y en a une) est plus complexe (double ou triple).</p>
+
+<p><strong>•3e recueil</strong><br>
+Livre XII, la vision de ce troisième recueil est plus philosophique sur le monde. Imitation des anciens (observation, nature humaine) mais invention dans la manière.</p>
+
+<h3><u>III. L'art de la fable - Livres VII à XII</h3></u>
+
+<p><strong>Mode d'emploi</strong><br>
+Dans la fable double (Le Héron - La Fille) VII - 4 (p. 211), La Fontaine divulgue ces procédés dans les vers 32 à 34. La fable est une métaphore de la réalité humaine même s'il sacrifie à l'animalisation.</p>
+
+<p><strong>Sources</strong><br>
+Il fait état de ses lectures dans “Le Paysan du Danube” XI - 7 (p. 337). Il se livre à la méditation en s'imprégnant de sagesse antique ou d'écrivains plus contemporains comme Descartes dans le discours de Madame de La Sablière (p. 297) ou de La Rochefoucauld, discours page 323 X - 14.</p>
+
+<p>Mais il refuse la simple imitation. “Le Singe” XII-19 (p. 375). Le classicisme s'inspire des anciens mais retravaille la matière. Dans le prologue “Le Loup et Le Renard” XI-6 (p. 336), La Fontaine critique le caractère systématique de la typologie ésopique (d’Ésope). Dans “Le Loup et le Renard”, le renard est à son désavantage. La Fontaine se détache de son maître Ésope.</p>
+
+<p><strong>Mise en abyme du poète à l'œuvre</strong><br>
+D'une façon moderne, La Fontaine se met en scène dans cette fable “Le Statuaire et La Statue de Jupiter” XI-6 (p. 281). Cette fable explicite de façon allégorique le travail du poète en figurant celui d'un créateur en puissance. Les hésitations du statuaire, traitées sur le mode comique sur les trois registres humoristiques, reflètent celui qui s'empare de La Fontaine dans le prologue du “Vieux Chat et La Vieille Souris” XII-5 (p. 354).</p>
+
+<p><strong>Mise en abyme :</strong> insertion d'un élément dans un autre à condition qu'il soit de même nature (La vache qui rit).</p>
+
+
+<h3><u>IV. La Fonction des Fables</h3></u>
+
+<p><strong>La vertu des fables</strong></p>
+
+<p>Instruire et plaire, vocation pédagogique (cf. préface 1668 p. 41).</p>
+
+<p>“L'apologue est composé de deux parties, dont on peut appeler l'une le corps et l'autre l'âme. Le corps est la fable, l'âme est la moralité.”</p>
+
+<p><strong>Apologue :</strong> Texte qui mélange récit et argumentation<br>
+&gt; Court récit qui contient une morale &gt; hybridation générique.</p>
+
+<p>“Le Berger et le Marchand” VII-18.<br>
+Cette fable propose un modèle de la relation qui doit s'instaurer entre le fabuliste et le lecteur. La Fontaine crée, par un récit au second degré, l'illusion d'une fiction dans une fiction et montre ainsi le pouvoir des fables qui réussissent à convaincre le marchand. Exactement emboîtés, les deux récits se reflètent l'un dans l'autre &gt; les mêmes éléments s'y retrouvent mais inversés, comme dans un miroir. Instruit par l'expérience du berger, le marchand sera retenu de commettre la même erreur que le berger.</p>
+
+<p><strong>Le nécessaire plaisir</strong></p>
+
+<p>“Le Pouvoir des Fables” VII-4 (p. 237).<br>
+Ce texte en est l'illustration puisque le premier tour employé par l'orateur est une preuve a contrario de cette nécessité de plaire à l'auditoire. Le protagoniste fait preuve d'un art tyrannique (v. 36) et le champ lexical de la violence caractérise ses propos : “danger” (v. 35), “art tyrannique” (v. 36), “forcer” (v. 37), “tonna” (v. 42)…</p>
+
+<p>Or, chaque fois, ces périodes (longues phrases) en rhétorique (art de discourir), représentées par l'enjambement (fin précédant la longueur du vers) &gt; v. 39-40-41, sont coupées par un hémistiche (moitié d'un vers) :<br>
+“On ne l'écoutait pas. L'orateur…” Ce tribun peut efficace constituer un contre-modèle pour le fabuliste qui prône une esthétique de la surprise et de la variété.</p>
+
+<p><strong>La variété</strong></p>
+
+<p>“Le Renard, Les Mouches et Le Hérisson” XII-13 (p. 367).<br>
+Il se félicite d'avoir accru son bestiaire et salue un nouvel acteur de sa comédie.<br>
+Il aborde aussi un nouveau sujet : les problèmes philosophiques &gt; discours à Madame de La Sablière IX-19 (p. 298) v. 19-26.<br>
+Des récits colorés et ludiques permettent de convaincre et de persuader.<br>
+“Les Deux Coqs” (VII-12 p. 223).</p>
+
+<h2><u>Introduction</h2></u>
+
+<p>Le livre VII est consacré à la Fortune (destin, sort) (cf. les fables qui l’encadrent). La fable 12 s'inscrit dans cette démonstration en reprenant une anecdote tirée d'Ésope “Les Deux Coqs et l'Aigle”, une véritable épopée de basse-cour en trois actes :</p>
+
+<ul>
+<li>l'altercation,</li>
+<li>la retraite du vaincu,</li>
+<li>le revers de fortune.</li>
+</ul>
+
+<p>Trois épisodes structurés à l'identique : un élément, à chaque fois, transforme la situation initiale et produit une nouvelle situation qui donne lieu à une description :</p>
+
+<ul>
+<li>l'arrivée de la poule &gt; combat,</li>
+<li>la victoire &gt; la rage du vaincu,</li>
+<li>le vautour &gt; le survivant et ses conquêtes.</li>
+</ul>
+
+<h3><u>I. Une parodie des récits antiques (v. 1-10)</h3></u>
+
+<p>Le passé simple (ponctuel) rompt l'équilibre de l'imparfait (duratif). Cette opposition aspectuelle montre d'emblée la perturbation de la situation initiale. Le vers 2 est octosyllabique : il est plus bref que l'alexandrin qui le précède. Cela marque le lien de nécessité dans le lien cause-conséquence. L'hémistiche étant plus petit que l'octosyllabe, dont il est solitaire, montre l'ampleur de la conséquence. “Amour” (v. 3), grandiloquence, contraste avec la syntaxe familière du vers 2.</p>
+
+<p>Le mythe fait irruption dans une querelle de basse-cour &gt; Troie, Hélène… + Xanthe, combat d'Achille, en faisant métonymiquement référence aux figures légendaires de l'Olympe.</p>
+
+<p>La Fontaine met en parallèle deux figures : métonymie et synecdoque :</p>
+
+<ul>
+<li>métonymie : j'ai bu une bonne bouteille</li>
+<li>synecdoque : j'ai acheté une bonne bouteille</li>
+</ul>
+
+<p>&gt; Figures de substitution.</p>
+
+<p>Le registre est burlesque et épique comme le montrent les changements métriques symétriques (12/8/12/8). “La guerre allumée” désigne la querelle de poulailler tandis que la querelle envenimée du vers 4 renvoie au combat épique d'Achille &gt; on attendait le contraire : les deux registres finissent par échanger leurs caractéristiques distinctes.</p>
+
+<p>Effet héroï-comique (sujet traité dans le registre noble + burlesque &gt; événement grandiose raconté sur un ton familier).</p>
+
+<p>Cela crée une analogie comique entre ce combat et le siège de Troie qui dura 10 ans : l'épopée se retrouve ravalée au rang de basse-cour.</p>
+
+<p>Les combattants sont évoqués par l'intermédiaire des spectateurs par le moyen de périphrases, parodiant les épithètes homériques.</p>
+
+<p>Deux champs lexicaux antagonistes se croisent, conjuguant les effets héroï-comiques et burlesques pour dresser un tableau grotesque.</p>
+
+<p>Le dénouement du combat est expédié : “plus d'une Hélène” en récompense au vainqueur &gt; pastiche homérique.</p>
+
+<h3><u>II. Réversibilité des situations (v. 11-23)</h3></u>
+
+<p>Le vaincu va envahir le récit (paradoxe). Le deuxième hémistiche du vers 12 est repris anaphoriquement en tête du vers 13 + pluriel précieux avec “ses amours”. Le vers 13 et 14 constituent un rejet (la phrase se termine au début du vers suivant). Les vers 14 et 18, eux, sont des contre-rejets (la phrase commence à la fin du vers précédent). Une reprise pléonastique : vers 14 : “il voyait avec ses yeux”. Tous ces processus créent un style ampoulé à l'image du vaincu qui se voit ridiculisé.</p>
+
+<p>Dans les vers 15 à 17 se trouve la vaine affirmation de sa fierté outragée par l'utilisation de multiples adjectifs possessifs. Il se bat contre lui-même ou contre les vents. La césure fortement ponctuée du vers 19 brise net la mise en scène du vaincu. Seul décasyllabe de la fable (v. 20), il mime le manque de mesure du personnage dont il dépend.</p>
+
+<p>La métonymie du vers 23 réduit le coq vaincu à son péché. La répétition du mot “vautour” (v. 21-23) inscrit dans le texte le piège tendu par la Fortune au vainqueur.</p>
+
+<p>Comme le premier tableau, la clôture du second escamote l'événement rendu abstraitement et presque euphémiquement dans la métonymie du vers 23 et n’en donne que les conséquences au vers 22 &gt; reprise inversée du vers 12. Ce chiasme renvoie (parallélisme inversé) au renversement de situation : le vainqueur est vaincu à son tour.</p>
+
+<h3><u>III. Subversion du genre (v. 24-fin)</h3></u>
+
+<p>Au vers 24, le mot “fatal” &gt; mot du destin annonce un nouveau renversement de situation, ce qui introduit le troisième tableau.</p>
+
+<p>Allitérations en [k] aux vers 26-28 &gt; “coq”, “coquet”, “gloussements”. L’allitération de l'occlusive [k] produit une harmonie imitative.</p>
+
+<p>Enfin, au vers 28, le mot “femme” nous transporte chez l'humain et associe en retour les paroles d'amour aux gloussements &gt; effet burlesque initial.</p>
+
+<p>Le vers 29 résume les enjeux de la fable, ce qui est conforme à l'esthétique du genre. Les trois derniers vers ne se rapportent qu'à un bref passage (v. 19-23). Ce n'est pas un vainqueur insolent qui est longuement mis en scène mais un vaincu impuissant.</p>
+
+<p>La moralité focalise sur un seul des protagonistes et se transforme en banale leçon de violence. La moralité de l'apologue d'Ésope : “Cette fable montre que le Seigneur a rigueur contre les orgueilleux et donne la grâce aux humbles.”</p>
+
+<p>Le fabuliste ne se fait plus le serviteur de la justice divine mais du hasard, et son coq est loin de représenter les humbles.</p>
+
+<p>La parodie d'Homère introduit un décalage : le moraliste y est moins important que le pastiche.</p>
+
+<h2><u>Conclusion</h2></u>
+
+<p>Le coq initialement vaincu l'est comme son prédécesseur : la conclusion de l'apologue repose sur le mouvement de retournement perpétuel auquel préside la Fortune, constituant une fin ouverte.</p>
+
+<p>La mise en garde se ferait moins contre la Fortune que contre l'amour, car la comédie galante est une comédie à rebondissements.</p>
+
+<p>Une fin déceptive : l'esthétique de surprise et de subversion qui a présidé à l'élaboration de cette fable prévaut puisque la moralité ne serait pas morale.</p>
+
+<h2><u>Le Rat et l'Huître VII-9 (p. 243)</h2></u>
+
+<h3><u>Introduction</h3></u>
+
+<p>Cette fable se compose en écho d'autres fables (cf. “Le Vieux Chat et la Jeune Souris”) &gt; un souriceau acquiert les épreuves et enseigne à se méfier des apparences : “Cette fable contient plus d'un enseignement” (v. 34).</p>
+
+<p>Au-delà des leçons explicites et convenues (l'amour-propre est toujours puni, le voyage est une illusion), le fabuliste souligne la polysémie de sa moralité pour attirer sur un sens qui se dérobe au lecteur et fuit le fond de sa lecture.</p>
+
+<h3><u>I. Un monde livresque (v. 1-20)</h3></u>
+
+<p><strong>“À nous deux le monde” (v. 1-4)</strong></p>
+
+<p>Les vers 1 à 4 présentent le personnage et son projet : scène de rupture &gt; désir d'une autonomie audacieuse, plus simplement : abandon du cercle familial.</p>
+
+<p>Ce passage est au passé simple et au présent, ce qui produit l’effet d’une actualisation de la décision de départ et met en valeur l'infraction de l'animal dont on pressent la fin funeste.</p>
+
+<p>Le champ lexical délimite son espace naturel : lieu de vie, d'approvisionnement et de logis “champ, grain, javelle (...) trou”.</p>
+
+<p>Du champ au trou, l'espace se resserre : la clôture de la terre d'origine s'oppose à l'ouverture au voyage avec le mot “pays”.</p>
+
+<p>“De peu de cervelle” : cette expression souligne l'impulsivité, spontanément attirée par des projets démesurés.</p>
+
+<p>La cadence des vers 3-4 (asyndète : absence de lien de coordination) imite le trottinement de l'animal pressé + répétition du substantif “champ” (hémistiche vers 1 et vers 3), produisant un effet de rupture brutale des liens familiaux.</p>
+
+<p>Cette fable sur le voyage fait écho aux “Deux Pigeons” (IX-2), placé sous le signe de l'insatisfaction humaine.</p>
+
+<p><strong>“Que le monde est spacieux” (v. 5-12)</strong></p>
+
+<p>Sitôt (v. 5) + le discours direct = le rat parle, ce qui signifie pour lui : reconnaître dans la réalité ce qu'il croit savoir des livres.</p>
+
+<p>La symétrie du vers 7 montre qu'il ne voit pas le monde tel qu'il est : il le déforme. En dévoilant une taupinière derrière les Appennins ou le Caucase, le fabuliste démystifie cette parole prétentieuse.</p>
+
+<p>La Fontaine s'approprie l'univers que le rat croit saisir d'un seul regard.</p>
+
+<p>Diérèse : spa-ci-eux<br>
+Synérèse : lion</p>
+
+<p>Les rimes significatives “case” - “Caucase”, “yeux” - “spacieux” traduisent des enjeux de proportions.</p>
+
+<p>La voix du personnage (v. 6-7) laisse place à celle du narrateur (v. 8) : l'ironiste se moque de l'arrogance du personnage gâté par des connaissances mal assimilées.</p>
+
+<p>La formule des “vaisseaux de haut bord” (v. 12), désignant les huîtres, est à l'origine de la déformation de perspective dans le regard avec “crut voir”. Par le flottement d'une allitération en [v], l'adverbe “d'abord” (v. 11) renvoie l'image dans un écart entre le grand et le petit.</p>
+
+<p><strong>“Le précieux ridicule” (v. 13-20)</strong></p>
+
+<p>Verbalisation de son expérience (v. 13-16) par un monologue court, qui nous fait pénétrer dans ses pensées vaniteuses.</p>
+
+<p>Il se glorifie en rejetant le modèle paternel : “il” représentant le père. “Il s'oppose un jeu assuré” &gt; complaisance avec soi-même + inversion poétique grandiloquente “maritime empire” + citation de Rabelais plaquée, constituant le bagage culturel du rat.</p>
+
+<p>Le vers 20 “être savant jusqu'aux dents” &gt; mauvais savant + vers 19 : négation de l'expression appliquée au rat &gt; second degré de l'ironie qui dénonce son ridicule.</p>
+
+<p>Quoi de plus normal qu'un rongeur rongeant, savant jusqu'aux dents + multiplication d'une assonance en [an], renforçant l'idée du faux savant + la nourriture évoquée par “rongeant” annonce la gloutonnerie avec l'huître &gt; prolepse (anticipation).</p>
+
+<h3><u>II. Le piège de la réalité du monde (v. 21-fin)</h3></u>
+
+<p>Son œil se focalise sur une huître particulière. Opposition entre “tant” et “une” (v. 21 et 22).</p>
+
+<p>La tentation de la chair est décrite par des diérèses successives “ré-jou-is” (v. 23), “é-pa-nou-i” (v. 24) + le trio d'imparfaits au vers 24. Ils rythment la nonchalance des gestes.</p>
+
+<p>“Si je ne me trompe” (v. 28) + “jamais”, mis cruellement à la rime avec “mais” = indice d'une absence de clairvoyance.</p>
+
+<p>Sans oublier l'appellation héroï-comique de “Maître Rat”, qui connaît une fin tragique dans la petite prison de l'huître fatale, faisant le pendant négatif de la figure paternelle.</p>
+
+<p>La brutalité de la mort est suggérée par le rejet du vers 37 : une sentence conclut le récit au vers 33, la moralité remplaçant le fabuliste.</p>
+
+<h3><u>III. La moralité de la fable</h3></u>
+
+<p>La fermeture de l'huître clôt le récit et la moralité des livres : une perle de sagesse. La moralité de la fable est plurielle.</p>
+
+<p>Céder à l'appel du sens de la gourmandise.</p>
+
+<p>La chute est en retrait par rapport à l'alexandrin : les octosyllabes disent l'essentiel. Il ne s'agit pas seulement de libido sciendi (désir de savoir).</p>
+
+<p>Le lecteur, pourvu de l'expérience de la fable, se sent en position de supériorité. Or, que fait le lecteur s'il ne fait que retenir une leçon venue d'une fable ? Le piège du savoir se referme à nouveau sur nous : le fabuliste nous prend dans les rets de sa fable.</p>
+
+<h2><u>Conclusion</h2></u>
+
+<p>L'huître fait la fable. La perle fait la moralité. L'huître devient avatar alimentaire de l'objet poétique qui la contient.</p>
+
+<p>L'huître, fermant sa coquille sur l'ignorance, renvoie dos à dos le monde des livres à celui de la vie.</p>
+
+<p>À quoi servent les livres ? Pas à vivre dans un monde qui requiert une lucidité totale dans les rapports à l'autre : hostile, rusé, dangereux.</p>
+
+<p>La littérature n'est pas la vie : lire pour le plaisir mais ne pas transformer l'illusion en réalité.</p>
+
+<p>C'est une bonne leçon sur la juste distance des lectures. Remise en question des fonctions didactiques de la littérature.</p>
+
+<h2><u>Le Vieux Chat et la Jeune Souris XII-5 (p. 355)</h2></u>
+
+<h3><u>Introduction</h3></u>
+
+<p>Ces deux poèmes appartenant au dernier livre semblent s'inscrire dans une stratégie courtisane (cirage de pompe).</p>
+
+<p>Car le fabuliste rappelle dans la première pièce la requête du jeune duc de Bourgogne (petit-fils de Louis XIV) et semble obéir à l'ordre dans la seconde.</p>
+
+<p>Mais renversement : grâce à son outil, il transforme une pièce de commande en affirmation ironique de sa supériorité.</p>
+
+<p>Composition responsive : le rondeau, non numéroté, constitue le prologue de la fable 5, exploitant les ambiguïtés des expressions familières.</p>
+
+<p>Jouer au chat et à la souris et renverser l'analogie : chat = prince, souris = poète.</p>
+
+<h3><u>I. Le Rondeau</h3></u>
+
+<p>Ce texte est fondé sur un principe de retour et de transformation d'une situation initiale : déclinaison de l'inversion.</p>
+
+<p><strong>Première strophe :</strong> comment semble-t-elle participer à une poésie de louange ?</p>
+
+<p>Titre dédicace : “à Monseigneur le duc de Bourgogne”, soulignant l'obéissance du poète : “qui avait demandé une fable”, repris par la mise en relief des éloges du prince, mots placés à la coupe de l'hémistiche.</p>
+
+<p>Passage de l'impersonnel initial “plaire” à l'infinitif vers un verbe à l'indicatif présent “destine”, symbolisant la gloire du prince associée à la fable &gt; le discours courtisan se transforme vite en ode au poète.</p>
+
+<p>La tournure interrogative souligne la maîtrise du jeu : “composerai-je” tout en feignant l'hésitation.</p>
+
+<p>La première soumission est donc feinte.</p>
+
+<p>La forme interrogative est reprise dans les trois strophes suivantes mais le travail poétique fait de chacune d'elles des fables miniatures (cf. “Le Statuaire et la Statue de Jupiter”).</p>
+
+<p>Le travail du poète est mis en scène : un créateur en puissance est séduit par une matière qui se propose à lui.</p>
+
+<p><strong>Deuxième strophe :</strong> “que raconte-t-elle”</p>
+
+<p>Un apologue dont le personnage est une coquette ; le refrain fait office de moralité. Traditionnellement, le récit est animalier et la moralité est humaine. Ici, c'est l'inverse.</p>
+
+<p>Le thème principal : jeu et manipulation.</p>
+
+<p>L'opposition entre la douceur apaisante de la belle et sa cruauté réelle anticipe celle du fabuliste feignant la soumission.</p>
+
+<p>Le mot “chance” peut désigner les armes de la coquette (latin : carmen) &gt; le poème comme arme du fabuliste.</p>
+
+<p>Ambiguïté du refrain : chat et souris sont mis sur le même plan, on ne sait plus qui domine.</p>
+
+<p>Le second hémistiche évoque “Les Deux Coqs” : intervention de la Fortune.</p>
+
+<p>Les rapports politiques sont comparables aux relations de cour sous Louis XIV.</p>
+
+<p>Renversement : La Fontaine hésite à “introduire” le souverain, montrant que c'est lui qui maîtrise la situation.</p>
+
+<p>Double lecture :</p>
+
+<ul>
+<li>flatterie hyperbolique du prince</li>
+<li>critique implicite du pouvoir</li>
+</ul>
+
+<p>Les rimes évoluent (plates puis croisées), signe du brouillage.</p>
+
+<p>La cinquième strophe relève du prestidigitateur : “insensiblement”, “tour”.</p>
+
+<p>Le verbe “prendre” montre que le poète domine le jeu narratif.</p>
+
+<p>C'est lui qui décide la fin du rondeau.</p>
+
+<p>Inversion finale : chat = La Fontaine, souris = le prince.</p>
+
+<h3><u>II. La Fable V (Le Vieux Chat et la Jeune Souris)</h3></u>
+
+<p><strong>Structure :</strong> plaidoyer de la victime inséré dans un verdict sans appel.</p>
+
+<p>La fable commence in medias res (au milieu des choses).</p>
+
+<p>L'ordre est inversé : la souris semble centrale mais est condamnée dès le départ.</p>
+
+<p>Le modalisateur “crut” accentue l'illusion.</p>
+
+<p>Le chat envahit progressivement le texte.</p>
+
+<p><strong>Le plaidoyer de la souris</strong></p>
+
+<p>Passage au discours direct. Passage de l'alexandrin à l'octosyllabe : effet de souffle court.</p>
+
+<p>Accumulation d'arguments faibles et illogiques.</p>
+
+<p>“Laissez-moi vivre” devient “réservez-moi pour vos enfants” : demande absurde.</p>
+
+<p><strong>Intertextualité :</strong> “ventre affamé n'a point d'oreille”.</p>
+
+<p>Conclusion inversée : mise en valeur du chat.</p>
+
+<p><strong>Réponse du chat</strong></p>
+
+<p>Parodie du discours de la souris.</p>
+
+<p>Ton moqueur et moralisateur.</p>
+
+<p>Référence euphémisée à la mort (“là-bas”).</p>
+
+<p><strong>Voix du fabuliste</strong></p>
+
+<p>Euphémisme final : le chat mange la souris.</p>
+
+<p>Morale arbitraire et presque immorale.</p>
+
+<p>La fable devient une démonstration de pouvoir.</p>
+
+<h2><u>Conclusion</h2></u>
+
+<p>Structure circulaire : dernier vers reprend les premiers.</p>
+
+<p>Affirmation de la supériorité du poète sur le prince.</p>
+
+<p>Fable et rondeau sont renouvelés.</p>
+
+<h2><u>Discours à Madame de La Sablière (IX-19, p. 297)</h2></u>
+
+<h3><u>Introduction</h3></u>
+
+<p>La Fontaine dépasse la simple morale : il transmet aussi des connaissances.</p>
+
+<p>Dans le deuxième recueil, il aborde des questions philosophiques.</p>
+
+<p>Comment convaincre, instruire et plaire en reprenant la thèse cartésienne ?</p>
+
+<h3><u>I. La thèse cartésienne</h3></u>
+
+<p><strong>L'art des transitions</strong></p>
+
+<p>“Ils disent donc” (v. 29), “selon eux” (v. 45).</p>
+
+<p>Transition marquée par “cependant” (v. 68) introduisant des contre-exemples.</p>
+
+<p>Transition fluide : poésie au service de la logique.</p>
+
+<p><strong>La pensée par analogie</strong></p>
+
+<p>Animaux comparés à des machines (“montre”).</p>
+
+<p>Symétrie : “telle est la montre” / “la bête est toute telle”.</p>
+
+<p>Répétition de “sans” : absence de liberté.</p>
+
+<p><strong>Jeux d'énonciation</strong></p>
+
+<p>Multiplication des voix : narrateur, cartésiens, Descartes, Madame de La Sablière.</p>
+
+<p>Dialogue proche d'une comédie.</p>
+
+<p>Parodie du “cogito ergo sum”.</p>
+
+<p>Thèse cartésienne tournée en ridicule.</p>
+
+<h3><u>II. La thèse de La Fontaine</h3></u>
+
+<p><strong>Trois exemples :</strong></p>
+
+<ul>
+<li>le cerf : ruse</li>
+<li>la perdrix : dévouement</li>
+<li>les castors : organisation sociale</li>
+</ul>
+
+<p>Gradation des capacités animales.</p>
+
+<p>Réponse directe à Descartes.</p>
+
+<p>Les castors représentent une intelligence collective.</p>
+
+<p><strong>Prise de position</strong></p
+
+<p>La Fontaine défend une vision empirique fondée sur l'observation.</p>
+
+<p>Il valorise l'expérience contre la théorie abstraite.</p>
+
+</body>
+</html>
+
+          
+          </p>
+        `
+      },
+    ]
+  },
+
+ {
+    titre: "Séquence 5 - Non disponible",
+    parties: [
+      {
+        titre: "Séquence 5 - Non disponible",
+        contenu: `
+          <h2>Titre</h2>
+          <p>✏️ Ton cours ici.</p>
+        `
+      },
+    ]
+  },
+
+];
+
+
+// ── Horloge ────────────────────────────────────────────────
+function getSem(d) {
+  const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = dt.getUTCDay() || 7;
+  dt.setUTCDate(dt.getUTCDate() + 4 - day);
+  const y = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
+  return Math.ceil((((dt - y) / 86400000) + 1) / 7);
+}
+
+function tick() {
+  const d = new Date();
+  document.getElementById('clock').textContent =
+    String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+  const jours = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const mois  = ['janvier','février','mars','avril','mai','juin','juillet','août',
+                  'septembre','octobre','novembre','décembre'];
+  document.getElementById('jour').textContent = jours[d.getDay()];
+  document.getElementById('date-complet').textContent =
+    d.getDate() + ' ' + mois[d.getMonth()] + ' ' + d.getFullYear();
+  const n = getSem(d);
+  const s = n % 2 === 1 ? 'A' : 'B';
+  const b = document.getElementById('sem-b');
+  document.getElementById('sem-n').textContent = 'n°' + n;
+  b.textContent = s;
+  b.style.background = s === 'A' ? 'rgba(79,142,247,.2)' : 'rgba(62,207,142,.2)';
+  b.style.color       = s === 'A' ? '#4f8ef7'             : '#3ecf8e';
+}
+
+// ── Rendu liste ────────────────────────────────────────────
+function render() {
+  const c = document.getElementById('seq-list');
+  c.innerHTML = '';
+  SEQUENCES.forEach((seq, si) => {
+    seq.parties.forEach((p, pi) => {
+      const div = document.createElement('div');
+      div.className = 'seq-card';
+      div.innerHTML = `
+        <div class="seq-num">${si+1}.${pi+1}</div>
+        <div class="seq-info">
+          <div class="seq-titre">${p.titre}</div>
+          <div class="seq-sous">${seq.titre}</div>
+        </div>
+        <div class="seq-arrow">→</div>`;
+      div.onclick = () => ouvrir(si, pi);
+      c.appendChild(div);
+    });
+  });
+  c.classList.remove('stagger');
+  void c.offsetWidth;
+  c.classList.add('stagger');
+}
+
+function ouvrir(si, pi) {
+  const seq = SEQUENCES[si], p = seq.parties[pi];
+  document.getElementById('cours-titre').textContent = p.titre;
+  document.getElementById('cours-meta').textContent  = '🇫🇷 Français · ' + seq.titre;
+  document.getElementById('cours-contenu').innerHTML = p.contenu;
+  document.getElementById('page-liste').classList.remove('active');
+  document.getElementById('page-cours').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function retour() {
+  document.getElementById('page-cours').classList.remove('active');
+  document.getElementById('page-liste').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  tick();
+  setInterval(tick, 10000);
+  render();
+});
+</script>
+</body>
+</html>
